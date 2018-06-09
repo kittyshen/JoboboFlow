@@ -4,7 +4,6 @@ var path = require('path');
 var basename = path.basename(module.filename);
 var routePaths = [];
 
-
 // 1) Reads the current directory and filters off the index.js
 // 2) Goes over each controller file and changes them from [name here]-controller.js to a file path
 //    uncomment the console.logs on lines 18 and 20, and run this file in node `node index.js` for a good illustration

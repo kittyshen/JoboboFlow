@@ -1,0 +1,175 @@
+
+<div class="row top-nav">
+    <nav class="nav">
+        <span>
+        </span>
+
+    </nav>
+</div>
+<nav class="navbar bg-light navbar-light justify-content-between">
+    <a class="navbar-brand"><img src="assets/images/Project2logoversion2.png" alt="logo"></a>
+    <form class="form-inline">
+      <!-- <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"> -->
+      <button class="btn btn-outline-success " type="submit">Log in</button>
+    </form>
+  </nav>
+
+<div class="container">
+
+    <!-- a Bootstrap row with columns -->
+    <div class="row">
+        <!-- At large+ or medium screens takes up 2/3 width (8/12) small take full screen 12/12 -->
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <div id = "landingjumbotron" class="jumbotron jumbotron-fluid">
+                <h2 class=""> Our website help users doing job search management and compare their performance to their cohort.</h2>
+                <hr>
+                <h4 class="text-center"> Sign up today to start job searching.</h4>
+                <p class="text-center"><button id ="sign-up" class="  btn btn-outline-success " type="submit">Sign Up</button></p>
+
+            </div>
+            <hr>
+            <!-- sign-up log-in form popup here -->
+            <row>
+                <div class="modal" tabindex="1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title">Modal title</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <p>Modal body text goes here.</p>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-primary">Save changes</button>
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+            </row>
+        </div>
+
+        <span></span>
+
+    </div>
+
+</div>
+</div>
+
+
+<!-- <footer >
+    <p id="copyright">copy right joboboflow.com ©</p>
+</footer> -->
+<div class="card-deck">
+    <div class="card">
+      <img class="card-img-top" src="assets/images/icon-3.png" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title text-center">Efficiency</h5>
+        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+      </div>
+      <div class="card-footer">
+        <small class="text-muted">Last updated 3 mins ago</small>
+      </div>
+    </div>
+    <div class="card">
+      <img class="card-img-top" src="assets/images/icon-2.png" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title text-center">Comparison</h5>
+        <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+      </div>
+      <div class="card-footer">
+        <small class="text-muted">Last updated 3 mins ago</small>
+      </div>
+    </div>
+    <div class="card">
+      <img class="card-img-top" src="assets/images/icon-1.png" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title text-center">Result</h5>
+        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+      </div>
+      <div class="card-footer">
+        <small class="text-muted">Last updated 3 mins ago</small>
+      </div>
+    </div>
+  </div>
+
+{{!-- handlebar pass variable quick reference --}}
+
+{{!-- <div class = "row">
+
+	<div class = "col-md-4 col-sm-4">
+		<ul>
+			{{#each cats}}
+				{{#unless rescued}}
+					<div class ="alert alert-info ">
+						<li>
+							<p> {{id}} : {{cat_name}}</p>
+							<p> Put up for adoption at:<br>{{createdAt}}</p>
+							
+							<img src="assets/img/meow.png" width =80px alt="catbaby">
+							<form id ="adoptCat"  method="POST">
+							<input type="text" name="ownername" placeholder="Enter your name to adopt">
+
+							<button type="submit" class = "btn btn-primary adpBtn" data-id={{id}}>Adpot Meow</button>
+							</form>
+						</li>
+					</div>
+				{{/unless}}
+			{{/each}}
+		</ul>
+	</div>
+
+</div>
+<script type = "text/javascript">
+$(function() {
+
+	//click on the addCat button event
+	$("#addCat").on("submit",function(event){
+		event.preventDefault();
+		var catName = $("[name=catname]").val().trim();
+		var newCatObj = {
+			name:catName,
+			rescued:0
+		}
+		console.log(newCatObj);
+		$.post("/addcat",newCatObj)
+		.then(function(){
+			location.reload();
+		});
+	});
+
+	//click on the adoptcat button
+	$(".adpBtn").on("click",function(event){
+		event.preventDefault();	
+		var catid = $(this).data("id");  //grab the cat id from data attr assigned when render cat
+		var newCatObj = {
+			rescued:1,
+		}
+		console.log(newCatObj);
+		//save owner info before update cat
+		name = $("[name=ownername]").val().trim();
+		$.post("/owner", { name: name }).then(function (backdata) {
+			console.log("what iss backdata:  ",backdata);  //backdata is the previous post owner obj, we need the id
+			var newCatObj = {
+			rescued:1,
+			OwnerId:backdata.id  //assign cat's foreignkey with the owner id
+			}	//then update the cat
+			$.ajax("/adpotcat/" + catid, {
+				type: "PUT",
+				data: newCatObj
+			})
+			.then(function () {
+				console.log("changed adopted to", true);
+				location.reload();
+			});
+		});
+
+	});
+
+})
+</script> --}}
+
