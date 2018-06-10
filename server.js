@@ -43,9 +43,11 @@ app.listen(PORT, function() {
 })
 
 
+// UNCOMMENT THIS AND COMMENT OUT THE app.listen ABOVE ONCE WE HAVE THE REST OF OUR BASE
+// MODELS CREATED
 // var db = require("./models");
 
-// db.sequelize.sync({ force: true }).then(function() { //{ force: true }
+// db.sequelize.sync({ force: true }).then(function() {
 //   app.listen(PORT, function() {
 //     console.log("App listening on PORT " + PORT);
 //   });
