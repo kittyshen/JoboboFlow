@@ -1,11 +1,12 @@
 
 module.exports = function (sequelize, DataTypes) {
   var Cohort = sequelize.define('Cohort', {
-    name: {
+    cohort_name: {
       type: DataTypes.STRING,
       allowNull: false,
+      defaultValue: 'general', 
       validate: {
-        len: [1]
+        len: [1-30]
       }
     }
   });
@@ -15,6 +16,9 @@ module.exports = function (sequelize, DataTypes) {
       foreignKey: {
         allowNull: false
       }
+    });
+    Cohort.hasMany(models.User, {
+      onDelete: "cascade"
     });
   }
 
