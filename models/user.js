@@ -28,9 +28,7 @@ module.exports = function(sequelize, DataTypes) {
             len: [6-10]
           }
       },
-      // rescued: {
-      //   type: DataTypes.BOOLEAN,
-      //   defaultValue: false    }
+
     });
   
     User.associate = function(models) {
@@ -40,7 +38,8 @@ module.exports = function(sequelize, DataTypes) {
           allowNull: false
         },
       });
-      User.hasMany(models.Jobs, {
+
+      User.hasMany(models.Job, {
           onDelete: "cascade"
       });
     };

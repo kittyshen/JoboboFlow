@@ -1,7 +1,7 @@
 
 module.exports = function (sequelize, DataTypes) {
   var Cohort = sequelize.define('Cohort', {
-    cohortName: {
+    cohort_name: {
       type: DataTypes.STRING,
       allowNull: false,
       defaultValue: 'general', 
