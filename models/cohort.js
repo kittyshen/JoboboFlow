@@ -18,7 +18,7 @@ module.exports = function (sequelize, DataTypes) {
       }
     });
     Cohort.hasMany(models.User, {
-      onDelete: "cascade"
+      
     });
   }
 
