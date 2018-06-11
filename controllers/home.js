@@ -9,4 +9,11 @@ router.get('/',function(req,res) {
   res.render(path.join(__dirname,"../views/index.handlebars"));
 });
 
+router.get('/user:id',function(req,res) {
+    var id = req.params.id;
+    console.log('Helhlkjlo world! user');
+
+  //   res.sendFile(path.join(__dirname, "../public/home.html"));
+    res.render(path.join(__dirname,"../views/user.handlebars"));
+});
 module.exports = router;
