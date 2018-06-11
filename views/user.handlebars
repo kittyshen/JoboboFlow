@@ -1,3 +1,4 @@
+ {{!-- <link rel = "stylesheet" href ="../assets/css/style.css" > --}}
 
 <div class="row top-nav">
     <nav class="nav">
@@ -8,38 +9,65 @@
 </div>
 <nav class="navbar bg-light navbar-light justify-content-between">
     <a class="navbar-brand" href= "/"><img src="assets/images/Project2logoversion2.png" alt="logo"></a>
-    <button id = "login" class="btn btn-outline-success " data-target="#loginModal" type="submit" >Log in</button>
+    <button id = "login" class="btn btn-outline-success " data-target="#loginModal" type="submit" >Job search</button>
 
   </nav>
 
-<div class="container_landing">
+<div class="container_user_manage">
 
-    <!-- a Bootstrap row with columns -->
-    <div class="row">
-        <!-- At large+ or medium screens takes up 2/3 width (8/12) small take full screen 12/12 -->
-        <div class="col-lg-12 col-md-12 col-sm-12">
-            <div id = "landingjumbotron" class="jumbotron jumbotron-fluid">
-                <h2 class=""> Our website help users doing job search management and compare their performance to their cohort.</h2>
-                <hr>
-                <h4 class="text-center"> Sign up today to start job searching.</h4>
-                <p class="text-center"><button id="signup" class="btn btn-outline-success" data-target="#signUpModal" type="submit">Sign Up</button></p>
-
-            </div>
-            <!-- sign-up log-in form popup here -->
-			{{!-- sign-up form --}}
-            <row>
-                <div class="modal" tabindex="-1" id="signupModal" role="dialog">
-                    <div class="modal-dialog" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title">Sign Up</h5>
-                          <button type="button" id = "signupClose" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-
-                        <div class="modal-body">
-                         {{!-- sign-up input form  --}}
+	<!-- a Bootstrap row with columns -->
+	<div class="row">
+		<!-- At large+ or medium screens takes up 2/3 width (8/12) small take full screen 12/12 -->
+		<div class="col-lg-12 col-md-12 col-sm-12">
+			<div class="jumbotron jumbotron-fluid">
+				<h3 class="text-center">Job management panel </h3>
+				<hr>
+				<div class="card-deck">
+					<div class="card">
+						<img class="card-img-top" src="assets/images/icon-3.png" alt="Card image cap">
+						<div class="card-body">
+							<h5 class="card-title text-center">Efficiency</h5>
+							<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little
+								bit longer.</p>
+						</div>
+						<div class="card-footer">
+						</div>
+					</div>
+					<div class="card">
+						<img class="card-img-top" src="assets/images/icon-1.png" alt="Card image cap">
+						<div class="card-body">
+							<h5 class="card-title text-center">Efficiency</h5>
+							<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little
+								bit longer.</p>
+						</div>
+						<div class="card-footer">
+						</div>
+					</div>
+					
+					<div class="card">
+						<img class="card-img-top" src="assets/images/icon-3.png" alt="Card image cap">
+						<div class="card-body">
+							<h5 class="card-title text-center">Efficiency</h5>
+							<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little
+								bit longer.</p>
+						</div>
+						<div class="card-footer">
+						</div>
+					</div>
+					<div class="card">
+						<img class="card-img-top" src="assets/images/icon-1.png" alt="Card image cap">
+						<div class="card-body">
+							<h5 class="card-title text-center">Result</h5>
+							<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer
+								content than the first to show that equal height action.</p>
+						</div>
+						<div class="card-footer">
+						</div>
+					</div>
+				</div>
+			</div>
+            {{!-- revise below for job search form --}}
+{{!-- 
 						<form id="signupForm">
 							<div class="form-group">
 								<div class="form-group">
@@ -63,54 +91,8 @@
 								<input placeholder="Password" type="text" class="form-control" id="password">
 			
 							</div>
-						</form>
+						</form> --}}
 
-                        </div>
-                        <div class="modal-footer">
-                          	<button type="submit" id="signup_btn" class="btn btn-success btn-outline-success submit">Submit</button>
-
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-            </row>
-
-			{{!-- log-in form --}}
-            <row>
-                <div class="modal" tabindex="-1" id="loginModal" role="dialog">
-                    <div class="modal-dialog" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class=" text-center modal-title">Log In</h5>
-                          <button type="button" id = "loginClose" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-
-                        <div class="modal-body">
-                          {{!-- log-in input form  --}}
-						<form id="loginForm">
-							<div class="form-group">
-								<div class="form-group">
-								</div>
-								<label class ="label-control">User Name </label>
-								<input placeholder="User Name" type="text" class="form-control" id="login_user_name">
-								<br/>
-								<label class ="label-control">Password </label>
-								<input placeholder="Password" type="password" class="form-control" id="login_password">
-							</div>
-						</form>
-
-                        </div>
-                        <div class="modal-footer">
-                          	<button type="submit" id="login_btn" class="btn btn-success btn-outline-success submit">Log In</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-            </row>
         </div>
 
     </div>
@@ -123,7 +105,7 @@
 <!-- <footer >
     <p id="copyright">copy right joboboflow.com ©</p>
 </footer> -->
-<div class="card-deck">
+{{!-- <div class="card-deck">
     <div class="card">
       <img class="card-img-top" src="assets/images/icon-3.png" alt="Card image cap">
       <div class="card-body">
@@ -154,7 +136,7 @@
         <small class="text-muted">Last updated 3 mins ago</small>
       </div>
     </div>
-  </div>
+  </div> --}}
 <script src="assets/javascript/login_control.js"></script>
 {{!-- handlebar pass variable quick reference --}}
 {{!-- 
