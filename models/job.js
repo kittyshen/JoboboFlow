@@ -11,71 +11,34 @@ module.exports = function(sequelize, DataTypes) {
         company_name: {
             type: DataTypes.STRING
         },
-        job_description: {
-            type: DataTypes.TEXT,
-            allowNull: false
-        },
-        job_experience_level: {
-            type: DataTypes.INTEGER,
-            allowNull: true,
-        },
         job_type: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        job_skill1: {
-            type: DataTypes.STRING,
-            allowNull: true
-        },
-        job_skill2: {
-            type: DataTypes.STRING,
-            allowNull: true
-        }, 
-        job_skill3: {
-            type: DataTypes.STRING,
-            allowNull: true
-        },
-        job_salary_min: {
-            type: DataTypes.DECIMAL,
-            allowNull: true
-        },
-        job_salary_max: {
-            type: DataTypes.DECIMAL,
-            allowNull: true
-        },
-        job_visa_sponsorship: {
-            type: DataTypes.STRING,
-            allowNull: true,
-        },
         applied: {
             type: DataTypes.BOOLEAN,
             allowNull:false,
-            default: false
+            defaultValue: true
         },
         phone_interview: {
             type: DataTypes.BOOLEAN,
             allowNull:false,
-            default: false
+            defaultValue: false
         },
         site_interview: {
             type: DataTypes.BOOLEAN,
             allowNull:false,
-            default: false
+            defaultValue: false
         },
-        offer: {
+        outcome: {
             type: DataTypes.BOOLEAN,
             allowNull:false,
-            default: false
+            defaultValue: false
         },
-        reject: {
-            type: DataTypes.BOOLEAN,
-            allowNull:false,
-            default: false
-        },
-        no_response: {
-            type: DataTypes.BOOLEAN,
-            allowNull:false,
-            default: false
+        render_location: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            defaultValue: "applied"
         }
     });
 
