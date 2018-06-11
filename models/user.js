@@ -39,9 +39,9 @@ module.exports = function(sequelize, DataTypes) {
         },
       });
 
-      User.hasMany(models.Job, {
-          onDelete: "cascade"
-      });
+      // User.hasMany(models.Job, {
+      //     onDelete: "cascade"
+      // });
     };
     return User;
   }

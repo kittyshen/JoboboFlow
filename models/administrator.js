@@ -15,6 +15,7 @@ module.exports = function(sequelize, DataTypes) {
     // When an Author is deleted, also delete any associated Posts
     Administrator.hasMany(models.Cohort, {
      //Describe some relationship logic here
+     onDelete: 'cascade'
     });
   };
   return Administrator;
