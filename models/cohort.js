@@ -17,8 +17,12 @@ module.exports = function (sequelize, DataTypes) {
         allowNull: false
       }
     });
+
+  }
+
+  Cohort.associate = function(models) {
     Cohort.hasMany(models.User, {
-      
+      onDelete: "cascade"
     });
   }
 

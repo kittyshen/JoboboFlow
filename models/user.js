@@ -36,12 +36,15 @@ module.exports = function(sequelize, DataTypes) {
       User.belongsTo(models.Cohort, {
         foreignKey: { 
           allowNull: false
-        },
+        }
       });
+    }
 
+    User.associate = function(models) {
       User.hasMany(models.Job, {
           onDelete: "cascade"
       });
-    };
+    }
+    
     return User;
-  }
+  };
