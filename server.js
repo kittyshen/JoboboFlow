@@ -38,17 +38,17 @@ filePaths.forEach(function(route) {
 });
 
 
-app.listen(PORT, function() {
-  console.log('Listening on port: ' + PORT);
-})
+// app.listen(PORT, function() {
+//   console.log('Listening on port: ' + PORT);
+// })
 
 
 // UNCOMMENT THIS AND COMMENT OUT THE app.listen ABOVE ONCE WE HAVE THE REST OF OUR BASE
 // MODELS CREATED
-// var db = require("./models");
+var db = require("./models");
 
-// db.sequelize.sync({ force: true }).then(function() {
-//   app.listen(PORT, function() {
-//     console.log("App listening on PORT " + PORT);
-//   });
-// });
+db.sequelize.sync({ force: true }).then(function() {
+  app.listen(PORT, function() {
+    console.log("App listening on PORT " + PORT);
+  });
+});
