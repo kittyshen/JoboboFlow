@@ -1,32 +1,4 @@
-DROP DATABASE IF EXISTS joboboflow_db;
 
-CREATE DATABASE joboboflow_db;
-
-USE joboboflow_db;
-
-CREATE TABLE jobs (
-jobID INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-jobLink VARCHAR(500) NOT NULL,
-jobTitle VARCHAR(100) NOT NULL,
-companyName VARCHAR(150) NOT NULL,
-jobDescription TEXT NOT NULL,
-jobContact VARCHAR(100),
-jobLocation VARCHAR(100),
-jobExperienceLevel INT,
-jobType VARCHAR (50),
-jobSkill1 VARCHAR (50),
-jobSkill2 VARCHAR (50),
-jobSkill3 VARCHAR (50),
-jobSalaryMin DECIMAL,
-jobSalaryMax DECIMAL,
-jobVisaSponsorship VARCHAR(50),
-applied BOOLEAN DEFAULT FALSE,
-phoneInterview BOOLEAN DEFAULT FALSE,
-siteInterview BOOLEAN DEFAULT FALSE,
-offer BOOLEAN DEFAULT FALSE,
-reject BOOLEAN DEFAULT FALSE,
-no_response BOOLEAN DEFAULT FALSE
-);
 
 INSERT INTO jobs (jobLink, jobTitle, companyName, jobDescription, jobContact, jobLocation,jobExperienceLevel, jobType, jobSkill1, jobSalaryMin, jobSalaryMax, jobVisaSponsorship)
 VALUES ("https://angel.co/bolt/jobs/310250-software-engineer-machine-learning", "Software Engineer - Machine Learning", "Bolt", "Play a mission-critical role in designing and building the risk engine that powers Bolt transactions. We’re looking for someone with the experience, creativity, and passion for producing world-class technology. Companies and consumers alike will rely heavily on what you build, and you’ll have a ton of trust and responsibility. If challenges excite you, and you’re ready for a large one, let us know.
