@@ -2,18 +2,15 @@ module.exports = function(sequelize, DataTypes) {
     var Jobs = sequelize.define("Jobs", {
         job_link: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
         },
         job_title: {
             type: DataTypes.STRING,
             allowNull: false
         },
         company_name: {
-            type: DataTypes.STRING
-        },
-        job_type: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: false
         },
         applied: {
             type: DataTypes.BOOLEAN,
@@ -35,17 +32,37 @@ module.exports = function(sequelize, DataTypes) {
             allowNull:false,
             defaultValue: false
         },
-        render_location: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            defaultValue: "applied"
+        loc1: {
+            type: DataTypes.BOOLEAN,
+            allowNull:false,
+            defaultValue: true
+        },
+        loc2: {
+            type: DataTypes.BOOLEAN,
+            allowNull:false,
+            defaultValue: false
+        },
+        loc3: {
+            type: DataTypes.BOOLEAN,
+            allowNull:false,
+            defaultValue: false
+        },
+        loc4: {
+            type: DataTypes.BOOLEAN,
+            allowNull:false,
+            defaultValue: false
+        },
+        hide:{
+            type: DataTypes.BOOLEAN,
+            allowNull:false,
+            defaultValue: false
         }
     });
 
     Jobs.associate = function(models) {
         Jobs.belongsTo(models.User, {
             foreignKey: {
-                allowNull: false
+                allowNull: true
             }
         });
     }

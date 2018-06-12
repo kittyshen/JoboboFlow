@@ -33,7 +33,7 @@ $(function() {
         $.post("/user/add",userObj).then(function(data){
             // https://stackoverflow.com/questions/4744751/how-do-i-redirect-with-javascript
             console.log(data);
-            location.replace("/test");
+            location.replace("/user"+data.id);
             // location.reload();
         });
     })
