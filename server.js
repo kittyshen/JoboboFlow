@@ -36,9 +36,9 @@ for (var key in filePaths) {
   app.use(key, require(filePaths[key]));
 }
 
-// app.listen(PORT, function() {
-//   console.log('Listening on port: ' + PORT);
-// })
+// This was added separately, because of its unique nature compared to the other routes
+var homeRoute = require('./controllers/home');
+app.use('/',homeRoute);
 
 
 // UNCOMMENT THIS AND COMMENT OUT THE app.listen ABOVE ONCE WE HAVE THE REST OF OUR BASE
