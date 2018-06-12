@@ -40,6 +40,7 @@ router.get('/user:id',function(req,res) {
     where:{UserId:id}
   }).then(function(data){
     res.render(path.join(__dirname,"../views/user.handlebars"),{jobs:data});
+    // console.log("../views/user.handlebars");
     // res.render(path.join(__dirname,"../views/user.handlebars"),{jobs:data})
   });
 //   res.sendFile(path.join(__dirname, "../public/home.html"));
@@ -52,8 +53,8 @@ router.get('/user/:id/jobs',function(req,res) {
     include: [db.User],
     where:{UserId:id}
   }).then(function(data){
-    res.json(data);
-    // res.render(path.join(__dirname,"../views/user.handlebars"),{jobs:data})
+    // res.json(data);
+    res.render("../views/user.handlebars",{jobs:data});
   });
 });
 
