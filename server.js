@@ -3,7 +3,6 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var PORT = process.env.PORT || 8080;
 
-
 var app = express();
 
 // Server static content
@@ -30,13 +29,12 @@ var filePaths = require('./controllers/index');
 // can clutter up our server.js over time. We also avoid possibly looking around all over the place for 
 // where a breakdown occurred (the breakdown being that we forgot to add each additional route) 
 // e.g.  var chickensRoutes = require('./controllers/chickens-controller');
-//       app.use(chickensRoutes)
+//       app.use('',chickensRoutes)
 //       ...
 //       ...
-filePaths.forEach(function(route) {
-  app.use(require(route));
-});
-
+for (var key in filePaths) {
+  app.use(key, require(filePaths[key]));
+}
 
 // app.listen(PORT, function() {
 //   console.log('Listening on port: ' + PORT);
