@@ -7,6 +7,7 @@ var app = express();
 
 // Server static content
 app.use(express.static('public'));
+// app.use(express.static('users'));
 
 // Middleware
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -32,9 +33,13 @@ var filePaths = require('./controllers/index');
 //       app.use('',chickensRoutes)
 //       ...
 //       ...
-for (var key in filePaths) {
-  app.use(key, require(filePaths[key]));
-}
+// for (var key in filePaths) {
+//   app.use(key, require(filePaths[key]));
+// }
+filePaths.forEach(function(route) {
+  app.use(require(route));
+});
+
 
 // This was added separately, because of its unique nature compared to the other routes
 var homeRoute = require('./controllers/home');

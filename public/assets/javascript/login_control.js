@@ -60,9 +60,9 @@ $(function() {
 
       console.log(userObj);
       $("#signupModal").hide();
-      $.post("/users/add",userObj).then(function(data){
-        console.log(data);
-        // location.replace("/users"+data.id);
+      $.post("/user/add",userObj).then(function(data){
+        // console.log(data);
+        // location.replace("/user"+data.id);
       });
   })
 
