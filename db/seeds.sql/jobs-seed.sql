@@ -10,5 +10,3 @@ VALUES ("https://angel.co/bolt/jobs/310250-software-engineer-machine-learning", 
 
 
 -- INSERT INTO jobs (job_link, job_title, company_name, applied, phone_interview, site_interview, outcome)
-
-
