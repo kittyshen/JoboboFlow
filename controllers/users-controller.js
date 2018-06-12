@@ -1,8 +1,9 @@
 
 var express = require('express');
-var path = require('path');
-
 var router = express.Router();
+var path = require('path');
+var db = require(path.join(__dirname,'../models'));
+
 
 router.post('/user/add',function(req,res) {
   console.log('Hello world! users');
