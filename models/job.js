@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-    var Jobs = sequelize.define("Jobs", {
+    var Job = sequelize.define("Job", {
         job_link: {
             type: DataTypes.STRING,
             allowNull: true,
@@ -59,14 +59,14 @@ module.exports = function(sequelize, DataTypes) {
         }
     });
 
-    Jobs.associate = function(models) {
-        Jobs.belongsTo(models.User, {
+    Job.associate = function(models) {
+        Job.belongsTo(models.User, {
             foreignKey: {
                 allowNull: true
             }
         });
     }
 
-    return Jobs;
+    return Job;
 };
 
