@@ -9,5 +9,11 @@ router.get('/',function(req,res) {
   res.render(path.join(__dirname,"../views/index.handlebars"));
 });
 
+router.get('/chart',function(req,res) {
+  console.log('Hello world! home');
+  res.sendFile(path.join(__dirname, "../public/chart.html"));
+  // res.render(path.join(__dirname,"../views/index.handlebars"));
+});
+
 
 module.exports = router;
