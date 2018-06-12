@@ -2,7 +2,7 @@
 var fs = require('fs');
 var path = require('path');
 var basename = path.basename(module.filename);
-var routePaths = {};
+var routePaths = [];
 
 // 1) Reads the current directory and filters off the index.js
 // 2) Goes over each controller file and changes them from [name here]-controller.js to a file path
@@ -15,19 +15,10 @@ fs
     // The first case filters off a possible file name like ..js
     // The second case filters off index.js
     // The third case filters off any non .js files
-    return (file.indexOf(".") !== 0) && (file !== basename) && (file.slice(-3) === ".js" && file !== 'home.js');
+    return (file.indexOf(".") !== 0) && (file !== basename) && (file.slice(-3) === ".js");
   })
   .forEach(function(file) {
-    var pathName = '/';
-    for (var i = 0; i < file.length; i++) {
-      if(file[i] === '-') {
-        break;
-      } else {
-        pathName += file[i];
-      }
-    }
-    routePaths[pathName] = path.join(__dirname,file);
-    // console.log(routePaths);
+    routePaths.push(path.join(__dirname,file));
   });
 
 module.exports = routePaths;
