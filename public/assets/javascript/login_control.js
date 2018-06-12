@@ -38,6 +38,7 @@ $("#loginClose").on("click",function(){
       });
   })
 
+
   //signup button on the form clicked process user input
   $("#signup_btn").on("click",function(event){
   event.preventDefault();
