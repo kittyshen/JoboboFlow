@@ -3,7 +3,7 @@ var express = require('express');
 var router = express.Router();
 var path = require('path');
 var db = require(path.join(__dirname, '../models'));
-
+var;
 // ====================== Nick =========================
 router.post('/user/add', function (req, res) {
   var formData = {
@@ -45,7 +45,7 @@ router.post('/user/add', function (req, res) {
 router.post('/user/login', function (req, res) {
 
   // console.log('Hello world! userlogin');
-  // res.json({ id: 3 });
+  res.json({ id: 3 });
   // return res.redirect('/user/'+id);
   // res.render(path.join(__dirname,"../views/user.handlebars"));
 });
