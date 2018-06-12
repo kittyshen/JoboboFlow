@@ -40,28 +40,30 @@ $(function() {
 
     })
 
-    //signup button on the form clicked process user input
-    $("#signup_btn").on("click",function(event){
-		event.preventDefault();
 
-        var cohort_name = $("#cohort_name").val().trim();
-        var user_name = $("#user_name").val().trim();
-        var first_name = $("#first_name").val().trim();        
-        var last_name = $("#last_name").val().trim();        
-        var password = $("#password").val().trim();
-        var userObj = {
-            cohort_name:cohort_name,
-            user_name:user_name,
-            first_name:first_name,
-            last_name:last_name,
-            password:password
-        }
+  //signup button on the form clicked process user input
+  $("#signup_btn").on("click",function(event){
+  event.preventDefault();
 
-        console.log(userObj);
-        $("#signupModal").hide();
-        $.post("/user/add",userObj).then(function(){
+      var cohort_name = $("#cohort_name").val().trim();
+      var user_name = $("#user_name").val().trim();
+      var first_name = $("#first_name").val().trim();        
+      var last_name = $("#last_name").val().trim();        
+      var password = $("#password").val().trim();
+      var userObj = {
+          cohort_name:cohort_name,
+          user_name:user_name,
+          first_name:first_name,
+          last_name:last_name,
+          password:password
+      }
 
-        });
-    })
+      console.log(userObj);
+      $("#signupModal").hide();
+      $.post("/users/add",userObj).then(function(data){
+        console.log(data);
+        // location.replace("/users"+data.id);
+      });
+  })
 
 })
