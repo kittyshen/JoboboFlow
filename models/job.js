@@ -2,90 +2,71 @@ module.exports = function(sequelize, DataTypes) {
     var Jobs = sequelize.define("Jobs", {
         job_link: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
         },
         job_title: {
             type: DataTypes.STRING,
             allowNull: false
         },
         company_name: {
-            type: DataTypes.STRING
-        },
-        job_description: {
-            type: DataTypes.TEXT,
+            type: DataTypes.STRING,
             allowNull: false
-        },
-        job_experience_level: {
-            type: DataTypes.INTEGER,
-            allowNull: true,
-        },
-        job_type: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        job_skill1: {
-            type: DataTypes.STRING,
-            allowNull: true
-        },
-        job_skill2: {
-            type: DataTypes.STRING,
-            allowNull: true
-        }, 
-        job_skill3: {
-            type: DataTypes.STRING,
-            allowNull: true
-        },
-        job_salary_min: {
-            type: DataTypes.DECIMAL,
-            allowNull: true
-        },
-        job_salary_max: {
-            type: DataTypes.DECIMAL,
-            allowNull: true
-        },
-        job_visa_sponsorship: {
-            type: DataTypes.STRING,
-            allowNull: true,
         },
         applied: {
             type: DataTypes.BOOLEAN,
             allowNull:false,
-            default: false
+            defaultValue: true
         },
         phone_interview: {
             type: DataTypes.BOOLEAN,
             allowNull:false,
-            default: false
+            defaultValue: false
         },
         site_interview: {
             type: DataTypes.BOOLEAN,
             allowNull:false,
-            default: false
+            defaultValue: false
         },
-        offer: {
+        outcome: {
             type: DataTypes.BOOLEAN,
             allowNull:false,
-            default: false
+            defaultValue: false
         },
-        reject: {
+        loc1: {
             type: DataTypes.BOOLEAN,
             allowNull:false,
-            default: false
+            defaultValue: true
         },
-        no_response: {
+        loc2: {
             type: DataTypes.BOOLEAN,
             allowNull:false,
-            default: false
+            defaultValue: false
+        },
+        loc3: {
+            type: DataTypes.BOOLEAN,
+            allowNull:false,
+            defaultValue: false
+        },
+        loc4: {
+            type: DataTypes.BOOLEAN,
+            allowNull:false,
+            defaultValue: false
+        },
+        hide:{
+            type: DataTypes.BOOLEAN,
+            allowNull:false,
+            defaultValue: false
         }
     });
 
     Jobs.associate = function(models) {
         Jobs.belongsTo(models.User, {
             foreignKey: {
-                allowNull: false
+                allowNull: true
             }
         });
     }
 
     return Jobs;
 };
+
