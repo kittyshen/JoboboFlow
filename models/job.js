@@ -18,22 +18,22 @@ module.exports = function(sequelize, DataTypes) {
         applied: {
             type: DataTypes.BOOLEAN,
             allowNull:false,
-            defaultValue: true
+            defaultValue: 1
         },
         phone_interview: {
             type: DataTypes.BOOLEAN,
             allowNull:false,
-            defaultValue: false
+            defaultValue: 0
         },
         site_interview: {
             type: DataTypes.BOOLEAN,
             allowNull:false,
-            defaultValue: false
+            defaultValue: 0
         },
         outcome: {
             type: DataTypes.BOOLEAN,
             allowNull:false,
-            defaultValue: false
+            defaultValue: 0
         },
         render_location: {
             type: DataTypes.STRING,
@@ -52,3 +52,5 @@ module.exports = function(sequelize, DataTypes) {
 
     return Jobs;
 };
+
+module.exports = Jobs;
