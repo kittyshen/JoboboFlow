@@ -1,149 +1,158 @@
- {{!-- <link rel = "stylesheet" href ="../assets/css/style.css" > --}}
+ {{!--
+<link rel="stylesheet" href="../assets/css/style.css"> --}}
 
 <div class="row top-nav">
-    <nav class="nav">
-        <span>
-        </span>
-
-    </nav>
-</div>
-<nav class="navbar bg-light navbar-light justify-content-between">
-    <a class="navbar-brand" href= "/"><img src="assets/images/Project2logoversion2.png" alt="logo"></a>
-    <button id = "login" class="btn btn-outline-success " data-target="#loginModal" type="submit" >Job search</button>
+  <nav class="nav">
+    <span>
+    </span>
 
   </nav>
+</div>
+<nav class="navbar bg-light navbar-light justify-content-between">
+  <a class="navbar-brand" href="/">
+    <img src="assets/images/Project2logoversion2.png" alt="logo">
+  </a>
+  <button id="login" class="btn btn-outline-success " data-target="#loginModal" type="submit">Job search</button>
+  <a href="/chart" id="data-visual" class="btn btn-outline-success "> Data Visualization</a>
+</nav>
 
 <div class="container_user_manage">
 
-	<!-- a Bootstrap row with columns -->
-	<div class="row">
-		<!-- At large+ or medium screens takes up 2/3 width (8/12) small take full screen 12/12 -->
-		<div class="col-lg-12 col-md-12 col-sm-12">
-			<div class="jumbotron jumbotron-fluid">
-				<h3 class="text-center">Job management panel </h3>
-				<hr>
-				<div class="card-deck">
-					<div class="card">
-						<img class="card-img-top" src="assets/images/applied-icon.png" alt="Card image cap">
-						<span class ="btn" id="newJob"><img class="card-img-overlay" height= "80px" src="assets/images/add-icon.png" alt="Add new job"></span>
-						<div class="card-body">
-							<h5 class="card-title text-center">Applied Jobs</h5>
-								<div class="col-md-12 col-sm-12">
-									<ul>
-										{{#each jobs}} {{#unless hide}}{{#if loc1}}
+  <!-- a Bootstrap row with columns -->
+  <div class="row">
+    <!-- At large+ or medium screens takes up 2/3 width (8/12) small take full screen 12/12 -->
+    <div class="col-lg-12 col-md-12 col-sm-12">
+      <div class="jumbotron jumbotron-fluid">
+        <h3 class="text-center">Job management panel </h3>
+        <hr>
+        <div class="card-deck">
+          <div class="card">
+            <img class="card-img-top" src="assets/images/applied-icon.png" alt="Card image cap">
+            <span class="btn" id="newJob">
+              <img class="card-img-overlay" height="80px" src="assets/images/add-icon.png" alt="Add new job">
+            </span>
+            <div class="card-body">
+              <h5 class="card-title text-center">Applied Jobs</h5>
+              <div class="col-md-12 col-sm-12">
+                <ul>
+                  {{#each jobs}} {{#unless hide}}{{#if loc1}}
 
-										<div class="alert alert-info ">
-										<span class ="btn card-del" id="delete"{{id}}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x</span>
+                  <div class="alert alert-info ">
+                    <span class="btn card-del" id="delete" {{id}}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x</span>
 
-											<li>
-												<p> Title: {{job_title}}</p>
-												<p> Company: {{company_name}}</p>
-												<p> Link: <a href="{{job_link}}">click here</a> </p>
-												<form id="control" method="POST">
-													<button type="submit" class="btn btn-primary" id ="back"{{id}} data-id={{id}}>back</button>
-													<button type="submit" class="btn btn-primary" id ="next"{{id}} data-id={{id}}>next</button>
-												</form>
-											</li>
-										</div>
-										{{/if}}{{/unless}}{{/each}}
-									</ul>
-								</div>
-						</div>
-						<div class="card-footer">
-						</div>
-					</div>
-					<div class="card">
-						<img class="card-img-top" src="assets/images/phone-icon.png" alt="Card image cap">
-						<div class="card-body">
-							<h5 class="card-title text-center">Phone Interviews</h5>
-								<div class="col-md-12 col-sm-12">
-									<ul>
-										{{#each jobs}} {{#unless hide}}{{#if loc2}}
-										<div class="alert alert-info ">
-											<span class ="btn card-del" id="delete"{{id}}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x</span>
+                    <li>
+                      <p> Title: {{job_title}}</p>
+                      <p> Company: {{company_name}}</p>
+                      <p> Link:
+                        <a href="{{job_link}}">click here</a>
+                      </p>
+                      <form id="control" method="POST">
+                        <button type="submit" class="btn btn-primary" id="back" {{id}} data-id={{id}}>back</button>
+                        <button type="submit" class="btn btn-primary" id="next" {{id}} data-id={{id}}>next</button>
+                      </form>
+                    </li>
+                  </div>
+                  {{/if}}{{/unless}}{{/each}}
+                </ul>
+              </div>
+            </div>
+            <div class="card-footer">
+            </div>
+          </div>
+          <div class="card">
+            <img class="card-img-top" src="assets/images/phone-icon.png" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title text-center">Phone Interviews</h5>
+              <div class="col-md-12 col-sm-12">
+                <ul>
+                  {{#each jobs}} {{#unless hide}}{{#if loc2}}
+                  <div class="alert alert-info ">
+                    <span class="btn card-del" id="delete" {{id}}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x</span>
 
-											<li>
-												<p> Title: {{job_title}}</p>
-												<p> Company: {{company_name}}</p>
-												<p> Link: <a href="{{job_link}}">click here</a> </p>
-												<form id="control" method="POST">
-													<button type="submit" class="btn btn-primary" id ="back"{{id}} data-id={{id}}>back</button>
-													<button type="submit" class="btn btn-primary" id ="next"{{id}} data-id={{id}}>next</button>
-												</form>
-											</li>
-										</div>
-										{{/if}}{{/unless}}{{/each}}
-									</ul>
-								</div>
-						</div>
-						<div class="card-footer">
-						</div>
-					</div>
-					
-					<div class="card">
-						<img class="card-img-top" src="assets/images/on-site-icon.png" alt="Card image cap">
-						<div class="card-body">
-							<h5 class="card-title text-center">On-site Interviews</h5>
-							<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little
-								bit longer.</p>
-						</div>
-						<div class="card-footer">
-						</div>
-					</div>
-					<div class="card">
-						<img class="card-img-top" src="assets/images/outcome-icon.png" alt="Card image cap">
-						<div class="card-body">
-							<h5 class="card-title text-center">Outcomes</h5>
-							<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer
-								content than the first to show that equal height action.</p>
-						</div>
-						<div class="card-footer">
-						</div>
-					</div>
-				</div>
-			</div>
-            {{!-- revise below for job add form --}}
-			<row>
-				<div class="modal" tabindex="-1" id="addjobModal" role="dialog">
-					<div class="modal-dialog" role="document">
-						<div class="modal-content">
-							<div class="modal-header">
-								<h5 class="modal-title">Add new job</h5>
-								<button type="button" id="addjobClose" class="close" data-dismiss="modal" aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>
-							</div>
-			
-							<div class="modal-body">
-								{{!-- sign-up input form --}}
-								<form id="addjobForm">
-									<div class="form-group">
-										<label class="label-control">Company Name</label>
-										<input placeholder="Company Name" type="text" class="form-control" id="company_name">
-										<br/>
-										<label class="label-control">Job Title</label>
-										<input placeholder="Job Title" type="text" class="form-control" id="job_title">
-										<br/>
-										<label class="label-control">Job Link</label>
-										<input placeholder="Job Link" type="url" class="form-control" id="job_link">
+                    <li>
+                      <p> Title: {{job_title}}</p>
+                      <p> Company: {{company_name}}</p>
+                      <p> Link:
+                        <a href="{{job_link}}">click here</a>
+                      </p>
+                      <form id="control" method="POST">
+                        <button type="submit" class="btn btn-primary" id="back" {{id}} data-id={{id}}>back</button>
+                        <button type="submit" class="btn btn-primary" id="next" {{id}} data-id={{id}}>next</button>
+                      </form>
+                    </li>
+                  </div>
+                  {{/if}}{{/unless}}{{/each}}
+                </ul>
+              </div>
+            </div>
+            <div class="card-footer">
+            </div>
+          </div>
 
-									</div>
-								</form>
-			
-							</div>
-							<div class="modal-footer">
-								<button type="submit" id="addjob_btn" class="btn btn-success btn-outline-success submit">Submit</button>
-			
-							</div>
-						</div>
-					</div>
-				</div>
-			
-			</row>
+          <div class="card">
+            <img class="card-img-top" src="assets/images/on-site-icon.png" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title text-center">On-site Interviews</h5>
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is
+                a little bit longer.</p>
+            </div>
+            <div class="card-footer">
+            </div>
+          </div>
+          <div class="card">
+            <img class="card-img-top" src="assets/images/outcome-icon.png" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title text-center">Outcomes</h5>
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even
+                longer content than the first to show that equal height action.</p>
+            </div>
+            <div class="card-footer">
+            </div>
+          </div>
+        </div>
+      </div>
+      {{!-- revise below for job add form --}}
+      <row>
+        <div class="modal" tabindex="-1" id="addjobModal" role="dialog">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Add new job</h5>
+                <button type="button" id="addjobClose" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
 
+              <div class="modal-body">
+                {{!-- sign-up input form --}}
+                <form id="addjobForm">
+                  <div class="form-group">
+                    <label class="label-control">Company Name</label>
+                    <input placeholder="Company Name" type="text" class="form-control" id="company_name">
+                    <br/>
+                    <label class="label-control">Job Title</label>
+                    <input placeholder="Job Title" type="text" class="form-control" id="job_title">
+                    <br/>
+                    <label class="label-control">Job Link</label>
+                    <input placeholder="Job Link" type="url" class="form-control" id="job_link">
+
+                  </div>
+                </form>
+
+              </div>
+              <div class="modal-footer">
+                <button type="submit" id="addjob_btn" class="btn btn-success btn-outline-success submit">Submit</button>
+
+              </div>
+            </div>
+          </div>
         </div>
 
+      </row>
+
     </div>
+
+  </div>
 
 </div>
 </div>
@@ -154,93 +163,89 @@
     <p id="copyright">copy right joboboflow.com ©</p>
 </footer> -->
 
-<script src="assets/javascript/dashboard_control.js"></script>
-{{!-- handlebar pass variable quick reference --}}
-{{!-- 
-<div class = "row">
+<script src="assets/javascript/dashboard_control.js"></script> {{!-- handlebar pass variable quick reference --}} {{!--
+<div class="row">
 
-	<div class = "col-md-4 col-sm-4">
-		<ul>
-			{{#each cats}}
-				{{#unless rescued}}
-					<div class ="alert alert-info ">
-						<li>
-							<p> {{id}} : {{cat_name}}</p>
-							<p> Put up for adoption at:<br>{{createdAt}}</p>
-							
-							<img src="assets/img/meow.png" width =80px alt="catbaby">
-							<form id ="adoptCat"  method="POST">
-							<input type="text" name="ownername" placeholder="Enter your name to adopt">
+  <div class="col-md-4 col-sm-4">
+    <ul>
+      {{#each cats}} {{#unless rescued}}
+      <div class="alert alert-info ">
+        <li>
+          <p> {{id}} : {{cat_name}}</p>
+          <p> Put up for adoption at:
+            <br>{{createdAt}}</p>
 
-							<button type="submit" class = "btn btn-primary adpBtn" data-id={{id}}>Adpot Meow</button>
-							</form>
-						</li>
-					</div>
-				{{/unless}}
-			{{/each}}
-		</ul>
-	</div>
+          <img src="assets/img/meow.png" width=80px alt="catbaby">
+          <form id="adoptCat" method="POST">
+            <input type="text" name="ownername" placeholder="Enter your name to adopt">
 
-</div> --}}
-{{!-- <script type = "text/javascript">
-$(function() {
-	$("#signup").on("click",function(){
-		$("#signupModal").show();
-	});
-	$("#signupClose").on("click",function(){
-		$("#signupModal").hide();
-	});
-	$("#login").on("click",function(){
-		$("#loginModal").show();
-	});
-	$("#loginClose").on("click",function(){
-		$("#loginModal").hide();
-	});
+            <button type="submit" class="btn btn-primary adpBtn" data-id={{id}}>Adpot Meow</button>
+          </form>
+        </li>
+      </div>
+      {{/unless}} {{/each}}
+    </ul>
+  </div>
+
+</div> --}} {{!--
+<script type="text/javascript">
+  $(function () {
+    $("#signup").on("click", function () {
+      $("#signupModal").show();
+    });
+    $("#signupClose").on("click", function () {
+      $("#signupModal").hide();
+    });
+    $("#login").on("click", function () {
+      $("#loginModal").show();
+    });
+    $("#loginClose").on("click", function () {
+      $("#loginModal").hide();
+    });
 
 
-	//click on the addCat button event
-	$("#addCat").on("submit",function(event){
-		event.preventDefault();
-		var catName = $("[name=catname]").val().trim();
-		var newCatObj = {
-			name:catName,
-			rescued:0
-		}
-		console.log(newCatObj);
-		$.post("/addcat",newCatObj)
-		.then(function(){
-			location.reload();
-		});
-	});
+    //click on the addCat button event
+    $("#addCat").on("submit", function (event) {
+      event.preventDefault();
+      var catName = $("[name=catname]").val().trim();
+      var newCatObj = {
+        name: catName,
+        rescued: 0
+      }
+      console.log(newCatObj);
+      $.post("/addcat", newCatObj)
+        .then(function () {
+          location.reload();
+        });
+    });
 
-	//click on the adoptcat button
-	$(".adpBtn").on("click",function(event){
-		event.preventDefault();	
-		var catid = $(this).data("id");  //grab the cat id from data attr assigned when render cat
-		var newCatObj = {
-			rescued:1,
-		}
-		console.log(newCatObj);
-		//save owner info before update cat
-		name = $("[name=ownername]").val().trim();
-		$.post("/owner", { name: name }).then(function (backdata) {
-			console.log("what iss backdata:  ",backdata);  //backdata is the previous post owner obj, we need the id
-			var newCatObj = {
-			rescued:1,
-			OwnerId:backdata.id  //assign cat's foreignkey with the owner id
-			}	//then update the cat
-			$.ajax("/adpotcat/" + catid, {
-				type: "PUT",
-				data: newCatObj
-			})
-			.then(function () {
-				console.log("changed adopted to", true);
-				location.reload();
-			});
-		});
+    //click on the adoptcat button
+    $(".adpBtn").on("click", function (event) {
+      event.preventDefault();
+      var catid = $(this).data("id");  //grab the cat id from data attr assigned when render cat
+      var newCatObj = {
+        rescued: 1,
+      }
+      console.log(newCatObj);
+      //save owner info before update cat
+      name = $("[name=ownername]").val().trim();
+      $.post("/owner", { name: name }).then(function (backdata) {
+        console.log("what iss backdata:  ", backdata);  //backdata is the previous post owner obj, we need the id
+        var newCatObj = {
+          rescued: 1,
+          OwnerId: backdata.id  //assign cat's foreignkey with the owner id
+        }	//then update the cat
+        $.ajax("/adpotcat/" + catid, {
+          type: "PUT",
+          data: newCatObj
+        })
+          .then(function () {
+            console.log("changed adopted to", true);
+            location.reload();
+          });
+      });
 
-	});
+    });
 
-})
+  })
 </script> --}}
-

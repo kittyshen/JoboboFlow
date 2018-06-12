@@ -3,7 +3,7 @@ var express = require('express');
 var router = express.Router();
 var path = require('path');
 var db = require(path.join(__dirname, '../models'));
-var;
+
 // ====================== Nick =========================
 router.post('/user/add', function (req, res) {
   var formData = {
