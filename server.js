@@ -47,7 +47,7 @@ filePaths.forEach(function(route) {
 // MODELS CREATED
 var db = require("./models");
 
-db.sequelize.sync({ force: true }).then(function() {
+db.sequelize.sync().then(function() {  //{ force: true }
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });

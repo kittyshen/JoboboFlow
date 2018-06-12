@@ -14,7 +14,6 @@ html,body{
 .container_landing{
     margin:0 4% ;
     width: 92%;
-
 }
 
 .container_user_manage{
@@ -94,6 +93,36 @@ p{
 a{
     /* color:white; */
     text-decoration: none;
+}
+ul{
+    padding:0;
+}
+li{
+    list-style-type:none;
+    padding:0;
+}
+li >p {
+    margin:0;
+}
+.alert-info{
+    text-align: center;
+    background-color: #6eabc6;
+    color: rgb(255, 255, 255);
+    font-size: 0.8em;
+}
+.btn-primary{
+    padding:0.1em 1em;
+    font-size: 1em;
+    margin:0.3em 0.6em;
+    background-color: #426875;
+    margin-bottom:0em;
+}
+.card-del{
+    position:absolute;
+    /* clear: both; */
+    margin-right: 0;
+    padding-right:0;
+    padding-top:0 !important;
 }
 
 .showCase .hidden {

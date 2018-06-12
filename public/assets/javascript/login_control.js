@@ -1,5 +1,4 @@
 $(function() {
-
     //signup button clicked on landing page, pop up modal for the signup form
 	$("#signup").on("click",function(){
 		$("#signupModal").show();
@@ -30,12 +29,15 @@ $(function() {
         }
         console.log(userObj);
 		$("#loginModal").hide();
-        $.post("/user/add",userObj).then(function(data){
+        $.post("/user/login",userObj).then(function(data){
             // https://stackoverflow.com/questions/4744751/how-do-i-redirect-with-javascript
             console.log(data);
-            location.replace("/user"+data.id);
+            var userID = data.id;
+            localStorage.setItem("userID", userID);
+            location.replace("/user"+userID);
             // location.reload();
         });
+
     })
 
     //signup button on the form clicked process user input
