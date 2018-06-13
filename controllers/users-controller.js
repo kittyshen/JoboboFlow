@@ -45,6 +45,20 @@ router.post('/user/add', function (req, res) {
 // ======================================================
 
 router.post('/user/login', function (req, res) {
+  db.User.findAll({
+    where: { user_name: req.body.user_name }
+  })
+    .then(function(users) {
+      console.log(users.dataValues);
+      // users = users.dataValues;
+      // users.forEach(function(user) {
+      //   console.log(user);
+      // })
+    })
+    .catch(function(err) {
+      console.error(err);
+    });
+
   res.json({ id: 3 });
   // return res.redirect('/user/'+id);
   // res.render(path.join(__dirname,"../views/user.handlebars"));
