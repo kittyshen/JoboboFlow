@@ -45,9 +45,14 @@
 								<div class="form-group">
 									<label class ="label-control" for="cohort">Select a Cohort if you belong to any or leave it as general</label>
 									<select class="custom-select" id="cohort_name" >
-										<option>general</option>
+										{{!-- <option>general</option>
 										<option>TellmeTellme</option>
-										<option>Farley's gang</option>
+										<option>Farley's gang</option> --}}
+                    {{#each cohorts}}
+                      <option>
+                          {{cohort_name}}
+                      </option>
+                    {{/each}}
 									</select>
 								</div>
 								<label class ="label-control">User Name (unique id you use to log into our website)</label>

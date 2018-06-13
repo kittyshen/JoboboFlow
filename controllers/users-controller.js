@@ -6,13 +6,14 @@ var db = require(path.join(__dirname, '../models'));
 
 // ====================== Nick =========================
 router.post('/user/add', function (req, res) {
-  var formData = {
 
+  var formData = {
     user_name: req.body.user_name,
     first_name: req.body.first_name,
     last_name: req.body.last_name,
     password: req.body.password
   };
+
   // Query DB for the cohort by name (req.body.cohort_name)
   db.Cohort.findOne({ where: { cohort_name: req.body.cohort_name } })
     .then(function (data) {
@@ -29,27 +30,21 @@ router.post('/user/add', function (req, res) {
       // create a user in the DB with their associated cohort ID
       db.User.create(formData);
     })
-    .then(function (data) {
-      // Log the response given from a db.User.Create(formData)
-      console.log(data);
+    .then(function(data) {
+      res.json(data);
     })
     // Add a .catch method to the end of our promise chain to provide some
-    // errior handling
+    // error handling
     .catch(function (err) {
       console.error(err);
-    })
+    });
 
-  // db.User.create({user_name:req.body.user_name,first_name:req.body.first_name,last_name:req.body.last_name,password:req.body.password }).then(function(data){
-  //   res.json(data);
-  // });
   // return res.redirect('/user/'+id);
   // res.render(path.join(__dirname,"../views/user.handlebars"));
 });
 // ======================================================
 
 router.post('/user/login', function (req, res) {
-
-  // console.log('Hello world! userlogin');
   res.json({ id: 3 });
   // return res.redirect('/user/'+id);
   // res.render(path.join(__dirname,"../views/user.handlebars"));
