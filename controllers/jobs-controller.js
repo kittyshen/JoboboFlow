@@ -6,7 +6,7 @@ var db = require(path.join(__dirname,'../models'));
 
 
 
-router.get("api/admin/cohort/:id?/job-table", function(req, res) {
+router.get("/api/admin/cohort/:id?/job-table", function(req, res) {
   if(req.params.cohort_id) {
     db.Job.findAll({
     where: {
@@ -23,27 +23,27 @@ router.get("api/admin/cohort/:id?/job-table", function(req, res) {
   }
 });
 
+router.get("/api/jobs", function(req,res) {
+  db.Job.findAll({ }).then(function(result) {
+    return res.json(result);
+  });
+})
 
-router.get("api/admin/cohort/:id?/job-table", function(req, res) {
-  if(req.params.cohort_id) {
-    db.Job.findAll({
-    where: {
-      cohort_id: req.params.cohort_id
-    }
-    }).then(function(result) {
-      return res.json(result);
-    });
-  } 
-  else {
-    db.Job.findAll({}).then(function(result) {
-      res.json(result)
-    });
-  }
+router.get('/user/:id/jobs', function (req, res) {
+  var id = req.params.id;
+  // console.log(req.params.id + "kjljldjsf");
+  // console.log('jon world! user show all user jobs');
+  db.Job.findAll({
+    include: [db.User],
+    where: { UserId: id }
+  }).then(function (data) {
+    res.json(data);
+  });
 });
 
 
 
-router.get("api/admin/cohort/:id?/users/:id?/job-search", function(req, res) {
+router.get("/api/admin/cohort/:id?/users/:id?/job-search", function(req, res) {
   if (cohort_id && user_id) {
     db.Job.findAll({
     where: {
