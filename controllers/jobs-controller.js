@@ -60,6 +60,22 @@ router.get("/api/admin/cohort/:id?/users/:id?/job-search", function(req, res) {
   }
 });
 
+//alex adding route for job card add
+router.post('/job/add', function (req, res) {
+  var newjob = req.body;
+ 
+  db.Job.create(newjob)
+    
+  .then(function(data) {
+    res.json(data);
+  })
+  // Add a .catch method to the end of our promise chain to provide some
+  // error handling
+  .catch(function (err) {
+    console.error(err);
+  });
+});
+
 
 //kitty adding routes for job card postion rearrange
 router.put("/job/changeLoc:id", function(req, res) {

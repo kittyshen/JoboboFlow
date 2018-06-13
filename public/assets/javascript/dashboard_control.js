@@ -31,10 +31,13 @@ $(function() {
         var company_name = $("#company_name").val().trim();
         var job_title = $("#job_title").val().trim();
         var job_link = $("#job_link").val().trim();
+        var userID = localStorage.getItem("userID");
+
         var jobObj = {
             company_name:company_name,
             job_title:job_title,
-            job_link:job_link
+            job_link:job_link,
+            UserId : userID
         }
         console.log(jobObj);
         $("#addjobModal").hide();
@@ -43,7 +46,7 @@ $(function() {
             // https://stackoverflow.com/questions/4744751/how-do-i-redirect-with-javascript
             console.log(data);
             // location.replace("/user"+data.id);
-            // location.reload();
+            location.reload();
         });
     })
 
