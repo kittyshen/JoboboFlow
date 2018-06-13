@@ -94,4 +94,21 @@ router.put("/job/changeLoc:id",function(req,res){
   )
 })
 
+router.put("/job/delete/:id",function(req,res){
+  var id = req.params.id;
+  console.log(id);
+  var data = req.body;
+  console.log(data);
+
+  db.Job.update(
+     data,
+    {where:{id:id}})
+  .then(function(result){
+    res.json(result);
+    }
+  )
+})
+
+
+
 module.exports = router;

@@ -50,6 +50,30 @@ $(function() {
         });
     })
 
+    //alex deal with the delete(hide) card button
+    $(document).on("click",".card-del", function(event){
+        event.preventDefault();
+        var id = $(this).data("id");
+        console.log(id);
+        console.log("kjljflskjfalkj");
+
+        var jobObj = {
+            hide:1
+        }
+        console.log(jobObj);
+        $("#addjobModal").hide();
+        $.ajax("/job/delete/"+id, {
+            type: "PUT",
+            data: jobObj
+          })
+        .then(function(data){
+            // https://stackoverflow.com/questions/4744751/how-do-i-redirect-with-javascript
+            console.log(data);
+            // location.replace("/user"+data.id);
+            location.reload();
+        });
+    })
+
     //deal with user press next button on job cards action 
     $(document).on("click",".nextbtn",function(event){
         event.preventDefault();
