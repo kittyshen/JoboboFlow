@@ -25,9 +25,10 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <div class="form-group"><br>
+        <div class="form-group">
+          <br>
           <label for="sel1">Select a chart:</label>
-          <select class="form-control" id="sel1">
+          <select class="form-control" id="charts-dropdown">
             <option value="chart1">Chart 1</option>
             <option value="chart2">Chart 2</option>
             <option value="chart3">Chart 3</option>
@@ -38,7 +39,7 @@
         </div>
 
         <canvas id="line-chart" width="800" height="450"></canvas>
-      <br>
+        <br>
       </div>
     </div>
     </d>
@@ -49,83 +50,89 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 
     <script>
+      // function barChart() {
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var chart = new Chart(ctx, {
+          // The type of chart we want to create
+          type: 'bar',
 
-      var ctx = document.getElementById('myChart').getContext('2d');
-      var chart = new Chart(ctx, {
-        // The type of chart we want to create
-        type: 'bar',
+          // The data for our dataset
+          data: {
+            labels: ["Applied", "Phone", "On-site"],
+            datasets: [
+              {
+                label: "Farley",
+                backgroundColor: '#4F909A',
+                borderColor: '#4F909A',
+                data: [40, 2, 1],
+              },
+              {
+                label: "Cohort Average",
+                backgroundColor: '#D38A87',
+                borderColor: '#D38A87',
+                data: [80, 3, 1]
+              },
+              {
+                label: "All Students Average",
+                backgroundColor: '#A7D48C',
+                borderColor: '#A7D48C',
+                data: [90, 3, 2]
+              }
+            ]
+          },
 
-        // The data for our dataset
-        data: {
-          labels: ["Applied", "Phone", "On-site"],
-          datasets: [
-            {
-              label: "Farley",
-              backgroundColor: '#4F909A',
-              borderColor: '#4F909A',
-              data: [40, 2, 1],
-            },
-            {
-              label: "Cohort Average",
-              backgroundColor: '#D38A87',
-              borderColor: '#D38A87',
-              data: [80, 3, 1]
-            },
-            {
-              label: "All Students Average",
-              backgroundColor: '#A7D48C',
-              borderColor: '#A7D48C',
-              data: [90, 3, 2]
+          // Configuration options go here
+          options: {
+            title: {
+              display: true,
+              text: "Student's Job Application Status Compared to Cohort's Average and All Student's Average"
             }
-          ]
-        },
-
-        // Configuration options go here
-        options: { title: {
-            display: true,
-            text: "Student's Job Application Status Compared to Cohort's Average and All Student's Average"
-          }}
-      });
-
-      new Chart(document.getElementById("line-chart"), {
-        type: 'line',
-        data: {
-          labels: ["April 16", "April 16", "April 23", "April 30", "May 7", "May 14", "May 21", "May 28", "June 4", "June 11"],
-          datasets: [{
-            data: [5, 7, 7, 8, 9, 9, 9, 15, 18, 23],
-            label: "Ben",
-            borderColor: "#3e95cd",
-            fill: false
-          }, {
-            data: [3, 4, 4, 5, 6, 8, 9, 14, 37, 52],
-            label: "Chicken",
-            borderColor: "#8e5ea2",
-            fill: false
-          }, {
-            data: [6, 7, 18, 19, 20, 27, 48, 54, 55, 74],
-            label: "Farley",
-            borderColor: "#3cba9f",
-            fill: false
-          }, {
-            data: [4, 5, 5, 5, 10, 40, 45, 55, 58, 60],
-            label: "Jane",
-            borderColor: "#e8c3b9",
-            fill: false
-          }, {
-            data: [6, 7, 12, 12, 17, 26, 28, 29, 31, 43],
-            label: "Chris",
-            borderColor: "#c45850",
-            fill: false
           }
-          ]
-        },
-        options: {
-          title: {
-            display: true,
-            text: "Job Application per Student Over Time (weekly)"
+        });
+      // }
+
+      // function lineChart() {
+        new Chart(document.getElementById("line-chart"), {
+          type: 'line',
+          data: {
+            labels: ["April 16", "April 16", "April 23", "April 30", "May 7", "May 14", "May 21", "May 28", "June 4", "June 11"],
+            datasets: [{
+              data: [5, 7, 7, 8, 9, 9, 9, 15, 18, 23],
+              label: "Ben",
+              borderColor: "#3e95cd",
+              fill: false
+            }, {
+              data: [3, 4, 4, 5, 6, 8, 9, 14, 37, 52],
+              label: "Chicken",
+              borderColor: "#8e5ea2",
+              fill: false
+            }, {
+              data: [6, 7, 18, 19, 20, 27, 48, 54, 55, 74],
+              label: "Farley",
+              borderColor: "#3cba9f",
+              fill: false
+            }, {
+              data: [4, 5, 5, 5, 10, 40, 45, 55, 58, 60],
+              label: "Jane",
+              borderColor: "#e8c3b9",
+              fill: false
+            }, {
+              data: [6, 7, 12, 12, 17, 26, 28, 29, 31, 43],
+              label: "Chris",
+              borderColor: "#c45850",
+              fill: false
+            }
+            ]
+          },
+          options: {
+            title: {
+              display: true,
+              text: "Job Application per Student Over Time (weekly)"
+            }
           }
-        }
-      });
+        });
+      // }
+
 
     </script>
 </body>
