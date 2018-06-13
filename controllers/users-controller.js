@@ -98,5 +98,12 @@ router.get('/user/:id/jobs', function (req, res) {
   });
 });
 
+router.get('/user/all',function (req, res) {
+  // console.log('jon world!show all users');
+  db.User.findAll({
+  }).then(function (data) {
+    res.json(data);
+  });
+});
 module.exports = router;
 
