@@ -21,9 +21,9 @@ module.exports = function(sequelize, DataTypes) {
 };
 
 
-$.get(url,function(data) {
+// $.get(url,function(data) {
  
-  query1
-  query2 
-  Promise.all(wuery)
-})
+//   query1
+//   query2 
+//   Promise.all(wuery)
+// })
