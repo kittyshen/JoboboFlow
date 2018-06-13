@@ -10,12 +10,12 @@
   <!-- <link rel="stylesheet" href="css/styles.css" media="screen" title="no title"> -->
   <script src="https://code.jquery.com/jquery.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-  <link rel = "stylesheet" href ="./assets/css/style.css" >
+  <link rel="stylesheet" href="./assets/css/style.css">
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed|Sunflower:300" rel="stylesheet">
 </head>
 
-<body id ="chartPage">
+<body id="chartPage">
 
   <nav class="navbar bg-light navbar-light justify-content-between">
     <a class="navbar-brand" href="/">
@@ -30,8 +30,9 @@
     <div class="row">
       <div class="col-md-12">
         <div class="form-group">
+          <br>
           <label for="sel1">Select a chart:</label>
-          <select class="form-control" id="sel1">
+          <select class="form-control" id="charts-dropdown">
             <option value="chart1">Chart 1</option>
             <option value="chart2">Chart 2</option>
             <option value="chart3">Chart 3</option>
@@ -40,6 +41,9 @@
           <br>
           <input type="submit" value="Submit">
         </div>
+
+        <canvas id="line-chart" width="800" height="450"></canvas>
+        <br>
       </div>
     </div>
     </d>
@@ -49,6 +53,85 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 
     <script>
+      $(function () {
+        var userData;
+        var allData;
+        var cohortData;
+
+        function showUserData() {
+
+
+          var userID = localStorage.getItem("userID");
+          console.log(userID);
+
+          var url = "/user/" + userID + "/jobs";
+          console.log(url);
+
+          var p1 = $.get(url, function (data) {
+            return data;
+          });
+
+          var p2 = $.get("/api/jobs", function (data) {
+            return data;
+          });
+
+          var p4 = $.get("/user/all", function (data) {
+            return data;
+          });
+          return Promise.all([p1, p2, p4]);
+        }
+
+        showUserData().then(function (data) {
+          var sumAppliedUser =0;
+          var sumPhoneUser = 0;
+          var sumSiteUser = 0;
+          var sumAppliedAll =0;
+          var sumPhoneAll = 0;
+          var sumSiteAll = 0;
+          var sumUser = data[2].length;
+
+          sumAppliedUser = data[0].length;
+          sumAppliedAll = data[1].length;
+          // extract user data
+          for (var i = 0; i < data[0].length; i++) {
+            
+              if (data[0][i].site_interview) {
+                sumPhoneUser++;
+              } else if (data[0][i].phone_interview) {
+                sumSiteUser++;
+              }
+          }
+
+          // extract all data
+          for (var i = 0; i < data[1].length; i++) {
+            
+            if (data[1][i].site_interview) {
+              sumPhonAll++;
+            } else if (data[1][i].phone_interview) {
+              sumSiteAll++;
+            }
+          }
+
+          //now we average the all user data
+          var aveAppliedAll = sumAppliedAll/sumUser;
+          var avePhoneAll = sumPhoneAll/sumUser;
+          var aveSiteAll = sumSiteAll/sumUser;
+
+            console.log("sumAppliedU", sumAppliedUser)
+            console.log("sumphoneU",sumPhoneUser)
+            console.log("sumsiteU", sumSiteUser)
+            console.log("sumAppliedA", aveAppliedAll)
+            console.log("sumphoneA",avePhoneAll)
+            console.log("sumsiteA",  aveSiteAll)
+            // console.log("all data", data)
+          
+
+          // console.log("user", data[0].length)
+          // console.log("all", data[1].length)
+        })
+      })
+
+      // function barChart() {
       var ctx = document.getElementById('myChart').getContext('2d');
       var chart = new Chart(ctx, {
         // The type of chart we want to create
@@ -59,7 +142,7 @@
           labels: ["Applied", "Phone", "On-site"],
           datasets: [
             {
-              label: "Student 1",
+              label: "Farley",
               backgroundColor: '#4F909A',
               borderColor: '#4F909A',
               data: [40, 2, 1],
@@ -80,8 +163,56 @@
         },
 
         // Configuration options go here
-        options: {}
+        options: {
+          title: {
+            display: true,
+            text: "Student's Job Application Status Compared to Cohort's Average and All Student's Average"
+          }
+        }
       });
+      // }
+
+      // function lineChart() {
+      new Chart(document.getElementById("line-chart"), {
+        type: 'line',
+        data: {
+          labels: ["April 16", "April 16", "April 23", "April 30", "May 7", "May 14", "May 21", "May 28", "June 4", "June 11"],
+          datasets: [{
+            data: [5, 7, 7, 8, 9, 9, 9, 15, 18, 23],
+            label: "Ben",
+            borderColor: "#3e95cd",
+            fill: false
+          }, {
+            data: [3, 4, 4, 5, 6, 8, 9, 14, 37, 52],
+            label: "Chicken",
+            borderColor: "#8e5ea2",
+            fill: false
+          }, {
+            data: [6, 7, 18, 19, 20, 27, 48, 54, 55, 74],
+            label: "Farley",
+            borderColor: "#3cba9f",
+            fill: false
+          }, {
+            data: [4, 5, 5, 5, 10, 40, 45, 55, 58, 60],
+            label: "Jane",
+            borderColor: "#e8c3b9",
+            fill: false
+          }, {
+            data: [6, 7, 12, 12, 17, 26, 28, 29, 31, 43],
+            label: "Chris",
+            borderColor: "#c45850",
+            fill: false
+          }
+          ]
+        },
+        options: {
+          title: {
+            display: true,
+            text: "Job Application per Student Over Time (weekly)"
+          }
+        }
+      });
+      // }
 
 
     </script>
