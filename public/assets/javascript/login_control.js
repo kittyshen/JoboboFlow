@@ -57,12 +57,31 @@ $(function() {
           last_name:last_name,
           password:password
       };
+
+      // Check form for valid inputs
+      var valid = true;
+      for(var key in userObj) {
+        if (userObj[key].length === 0) {
+          alert('Please fill out the ' + key + ' field.');
+          valid = false;
+          return;
+        };
+        if (key === 'password') {
+          if (userObj[key].length < 6) {
+            alert('Please provide a password longer than 6 characters!');
+            valid = false;
+          };
+        };
+      };
       
-      $("#signupModal").hide();
-      $.post("/user/add",userObj).then(function(data){
-        // console.log(data);
-        // location.replace("/user"+data.id);
-      });
+      if(valid) {
+        $("#signupModal").hide();
+        $.post("/user/add",userObj).then(function(data){
+          // console.log(data);
+          // location.replace("/user"+data.id);
+        });
+      };
+
   });
 
 });
