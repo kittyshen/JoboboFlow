@@ -31,10 +31,13 @@ $(function() {
         var company_name = $("#company_name").val().trim();
         var job_title = $("#job_title").val().trim();
         var job_link = $("#job_link").val().trim();
+        var userID = localStorage.getItem("userID");
+
         var jobObj = {
             company_name:company_name,
             job_title:job_title,
-            job_link:job_link
+            job_link:job_link,
+            UserId : userID
         }
         console.log(jobObj);
         $("#addjobModal").hide();
@@ -43,7 +46,31 @@ $(function() {
             // https://stackoverflow.com/questions/4744751/how-do-i-redirect-with-javascript
             console.log(data);
             // location.replace("/user"+data.id);
-            // location.reload();
+            location.reload();
+        });
+    })
+
+    //alex deal with the delete(hide) card button
+    $(document).on("click",".card-del", function(event){
+        event.preventDefault();
+        var id = $(this).data("id");
+        console.log(id);
+        console.log("kjljflskjfalkj");
+
+        var jobObj = {
+            hide:1
+        }
+        console.log(jobObj);
+        $("#addjobModal").hide();
+        $.ajax("/job/delete/"+id, {
+            type: "PUT",
+            data: jobObj
+          })
+        .then(function(data){
+            // https://stackoverflow.com/questions/4744751/how-do-i-redirect-with-javascript
+            console.log(data);
+            // location.replace("/user"+data.id);
+            location.reload();
         });
     })
 
