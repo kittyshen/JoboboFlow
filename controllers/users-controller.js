@@ -6,14 +6,13 @@ var db = require(path.join(__dirname, '../models'));
 
 // ====================== Nick =========================
 router.post('/user/add', function (req, res) {
-  var formData = {
 
+  var formData = {
     user_name: req.body.user_name,
     first_name: req.body.first_name,
     last_name: req.body.last_name,
     password: req.body.password
   };
-  console.log('Me first!!!!!!',formData);
   // Query DB for the cohort by name (req.body.cohort_name), and take the id property from 
   // the response object to be applied to the CohortId property for formData
   // then post to the user table all the pertinent data
@@ -28,23 +27,20 @@ router.post('/user/add', function (req, res) {
       db.User.create(formData);
     })
     .then(function(data) {
-      console.log(data);
+      res.json(data);
     })
-    .catch(function(err) {
+    // Add a .catch method to the end of our promise chain to provide some
+    // error handling
+    .catch(function (err) {
       console.error(err);
-    })
+    });
 
-  // db.User.create({user_name:req.body.user_name,first_name:req.body.first_name,last_name:req.body.last_name,password:req.body.password }).then(function(data){
-  //   res.json(data);
-  // });
   // return res.redirect('/user/'+id);
   // res.render(path.join(__dirname,"../views/user.handlebars"));
 });
 // ======================================================
 
 router.post('/user/login', function (req, res) {
-
-  // console.log('Hello world! userlogin');
   res.json({ id: 3 });
   // return res.redirect('/user/'+id);
   // res.render(path.join(__dirname,"../views/user.handlebars"));

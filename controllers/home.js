@@ -1,19 +1,37 @@
 var express = require('express');
-var path = require('path');
-
 var router = express.Router();
+var path = require('path');
+var db = require('../models');
 
-router.get('/',function(req,res) {
-  console.log('Hello world! home');
-//   res.sendFile(path.join(__dirname, "../public/home.html"));
-  res.render(path.join(__dirname,"../views/index.handlebars"));
+router.get('/', function (req, res) {
+  // Grab all cohorts to be rendered via a handlebars each
+  db.Cohort.findAll({})
+    .then(function(data) {
+      // grab all the cohorts values off the Sequelize response object 
+      // and store them in an array
+      var cohorts = data.map(function(cohort) {
+        return cohort.dataValues;
+      });
+      // pass the array to the next .then() method
+      return cohorts;
+    })
+    .then(function(cohorts) {
+      // configure handlebars object
+      var hbsObject = {
+        cohorts: cohorts
+      }
+      console.log(hbsObject);
+      // Need to pass the handlebars info to 'each the cohorts option menu'
+    res.render(path.join(__dirname, "../views/index.handlebars"),hbsObject);
+    })
+    // Error handling
+    .catch(function(err) {
+      console.error(err);
+    });
 });
 
-router.get('/chart',function(req,res) {
-  console.log('Hello world! home');
+router.get('/chart', function (req, res) {
   res.sendFile(path.join(__dirname, "../public/chart.html"));
-  // res.render(path.join(__dirname,"../views/index.handlebars"));
 });
-
 
 module.exports = router;

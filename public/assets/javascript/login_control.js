@@ -38,7 +38,7 @@ $(function() {
             // location.reload();
         });
 
-    })
+    });
 
 
   //signup button on the form clicked process user input
@@ -56,14 +56,13 @@ $(function() {
           first_name:first_name,
           last_name:last_name,
           password:password
-      }
-
-      console.log(userObj);
+      };
+      
       $("#signupModal").hide();
       $.post("/user/add",userObj).then(function(data){
         // console.log(data);
         // location.replace("/user"+data.id);
       });
-  })
+  });
 
-})
+});
