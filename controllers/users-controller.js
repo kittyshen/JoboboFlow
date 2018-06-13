@@ -28,7 +28,7 @@ router.post('/user/add', function (req, res) {
       // data is cohortId. We are adding a property to the formData equal to cohortId
       formData.CohortId = data;
       // create a user in the DB with their associated cohort ID
-      db.User.create(formData);
+      return db.User.create(formData)
     })
     .then(function(data) {
       res.json(data);
