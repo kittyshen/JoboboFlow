@@ -19,3 +19,11 @@ module.exports = function(sequelize, DataTypes) {
   };
   return Administrator;
 };
+
+
+$.get(url,function(data) {
+ 
+  query1
+  query2 
+  Promise.all(wuery)
+})

@@ -53,6 +53,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 
     <script>
+      var aveAppliedAll;
+      var avePhoneAll;
+      var aveSiteAll;
+
       $(function () {
         var userData;
         var allData;
@@ -82,10 +86,10 @@
         }
 
         showUserData().then(function (data) {
-          var sumAppliedUser =0;
+          var sumAppliedUser = 0;
           var sumPhoneUser = 0;
           var sumSiteUser = 0;
-          var sumAppliedAll =0;
+          var sumAppliedAll = 0;
           var sumPhoneAll = 0;
           var sumSiteAll = 0;
           var sumUser = data[2].length;
@@ -94,17 +98,17 @@
           sumAppliedAll = data[1].length;
           // extract user data
           for (var i = 0; i < data[0].length; i++) {
-            
-              if (data[0][i].site_interview) {
-                sumPhoneUser++;
-              } else if (data[0][i].phone_interview) {
-                sumSiteUser++;
-              }
+
+            if (data[0][i].site_interview) {
+              sumPhoneUser++;
+            } else if (data[0][i].phone_interview) {
+              sumSiteUser++;
+            }
           }
 
           // extract all data
           for (var i = 0; i < data[1].length; i++) {
-            
+
             if (data[1][i].site_interview) {
               sumPhonAll++;
             } else if (data[1][i].phone_interview) {
@@ -113,21 +117,21 @@
           }
 
           //now we average the all user data
-          var aveAppliedAll = sumAppliedAll/sumUser;
-          var avePhoneAll = sumPhoneAll/sumUser;
-          var aveSiteAll = sumSiteAll/sumUser;
+          aveAppliedAll = sumAppliedAll / sumUser;
+          avePhoneAll = sumPhoneAll / sumUser;
+          aveSiteAll = sumSiteAll / sumUser;
 
-            console.log("sumAppliedU", sumAppliedUser)
-            console.log("sumphoneU",sumPhoneUser)
-            console.log("sumsiteU", sumSiteUser)
-            console.log("sumAppliedA", aveAppliedAll)
-            console.log("sumphoneA",avePhoneAll)
-            console.log("sumsiteA",  aveSiteAll)
-            // console.log("all data", data)
-          
+          console.log("sumAppliedU", sumAppliedUser)
+          console.log("sumphoneU", sumPhoneUser)
+          console.log("sumsiteU", sumSiteUser)
+          console.log("sumAppliedA", aveAppliedAll)
+          console.log("sumphoneA", avePhoneAll)
+          console.log("sumsiteA", aveSiteAll)
+          // console.log("all data", data)
 
-          // console.log("user", data[0].length)
-          // console.log("all", data[1].length)
+
+          console.log("user", data[0])
+          console.log("all", data[1])
         })
       })
 
@@ -157,7 +161,7 @@
               label: "All Students Average",
               backgroundColor: '#A7D48C',
               borderColor: '#A7D48C',
-              data: [90, 3, 2]
+              data: [aveAppliedAll, avePhoneAll, aveSiteAll]
             }
           ]
         },
@@ -169,6 +173,22 @@
             text: "Student's Job Application Status Compared to Cohort's Average and All Student's Average"
           }
         }
+        // options: {
+        //   responsive: true,
+        //   title: {
+        //     display: true,
+        //     text: "Student's Job Application Status Compared to Cohort's Average and All Student's Average"
+        //   },
+        //   scales: {
+        //     yAxes: [{
+        //       type: "logarithmic",
+        //       display: true
+        //     }],
+        //     xAxes: [{
+        //       display: true
+        //     }]
+        //   }
+        // }
       });
       // }
 
@@ -206,10 +226,21 @@
           ]
         },
         options: {
+          responsive: true,
           title: {
             display: true,
             text: "Job Application per Student Over Time (weekly)"
           }
+          //,
+          // scales: {
+          //   yAxes: [{
+          //     type: "logarithmic",
+          //     display: true
+          //   }],
+          //   xAxes: [{
+          //     display: true
+          //   }]
+          // }
         }
       });
       // }
