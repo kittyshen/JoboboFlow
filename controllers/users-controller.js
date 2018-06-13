@@ -13,17 +13,21 @@ router.post('/user/add', function (req, res) {
     last_name: req.body.last_name,
     password: req.body.password
   };
-  // Query DB for the cohort by name (req.body.cohort_name), and take the id property from 
-  // the response object to be applied to the CohortId property for formData
-  // then post to the user table all the pertinent data
+
+  // Query DB for the cohort by name (req.body.cohort_name)
   db.Cohort.findOne({ where: { cohort_name: req.body.cohort_name } })
-    .then(function(data) {
+    .then(function (data) {
+      // get dataValues from the response Sequelize response object
       var match = data.dataValues;
+      // and take the id property from dataValues this is the cohortId
       var cohortId = match.id;
+      // Need to return the value here to be accessed in subsequent .then() calls
       return cohortId;
     })
-    .then(function(data) {
+    .then(function (data) {
+      // data is cohortId. We are adding a propert to the formData equal to cohortId
       formData.CohortId = data;
+      // create a user in the DB with their associated cohort ID
       db.User.create(formData);
     })
     .then(function(data) {
