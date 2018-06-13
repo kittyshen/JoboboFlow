@@ -62,4 +62,20 @@ router.get("api/admin/cohort/:id?/users/:id?/job-search", function(req, res) {
 });
 
 
+//kitty adding routes for job card postion rearrange
+router.put("/job/changeLoc:id",function(req,res){
+  var id = req.params.id;
+  console.log(id);
+  var data = req.body;
+  console.log(data);
+
+  db.Job.update(
+     data,
+    {where:{id:id}})
+  .then(function(result){
+    res.json(result);
+    }
+  )
+})
+
 module.exports = router;

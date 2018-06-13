@@ -25,10 +25,10 @@ router.post('/user/add', function (req, res) {
       return cohortId;
     })
     .then(function (data) {
-      // data is cohortId. We are adding a propert to the formData equal to cohortId
+      // data is cohortId. We are adding a property to the formData equal to cohortId
       formData.CohortId = data;
       // create a user in the DB with their associated cohort ID
-      db.User.create(formData);
+      return db.User.create(formData)
     })
     .then(function(data) {
       res.json(data);
@@ -79,8 +79,8 @@ router.get('/user/:id/jobs', function (req, res) {
     include: [db.User],
     where: { UserId: id }
   }).then(function (data) {
-    // res.json(data);
-    res.render("../views/user.handlebars", { jobs: data });
+    res.json(data);
+    // res.render("../views/user.handlebars", { jobs: data });
   });
 });
 
