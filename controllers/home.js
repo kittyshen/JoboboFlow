@@ -6,26 +6,22 @@ var db = require('../models');
 router.get('/', function (req, res) {
   // Grab all cohorts to be rendered via a handlebars each
   db.Cohort.findAll({})
-    .then(function(data) {
+    .then(function (data) {
       // grab all the cohorts values off the Sequelize response object 
       // and store them in an array
-      var cohorts = data.map(function(cohort) {
+      var cohorts = data.map(function (cohort) {
         return cohort.dataValues;
       });
-      // pass the array to the next .then() method
-      return cohorts;
-    })
-    .then(function(cohorts) {
       // configure handlebars object
       var hbsObject = {
         cohorts: cohorts
       }
-      console.log(hbsObject);
-      // Need to pass the handlebars info to 'each the cohorts option menu'
-    res.render(path.join(__dirname, "../views/index.handlebars"),hbsObject);
+      // console.log(hbsObject);
+      // Need to pass the handlebars info to 'each' the cohorts option menu
+      res.render(path.join(__dirname, "../views/index.handlebars"), hbsObject);
     })
     // Error handling
-    .catch(function(err) {
+    .catch(function (err) {
       console.error(err);
     });
 });
