@@ -11,6 +11,9 @@ html,body{
     font-family: 'Sunflower', sans-serif; 
     /* color: rgb(130, 233, 163); */
 }
+#chartPage{
+    background-image: none;
+}
 .container_landing{
     margin:0 4% ;
     width: 92%;

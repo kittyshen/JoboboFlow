@@ -79,8 +79,8 @@ router.get('/user/:id/jobs', function (req, res) {
     include: [db.User],
     where: { UserId: id }
   }).then(function (data) {
-    // res.json(data);
-    res.render("../views/user.handlebars", { jobs: data });
+    res.json(data);
+    // res.render("../views/user.handlebars", { jobs: data });
   });
 });
 
