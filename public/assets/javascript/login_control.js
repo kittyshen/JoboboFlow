@@ -26,16 +26,16 @@ $(function() {
     // Authenticate if this user provided correct info and log them in
     authenticate(credentials)
       .then(function(authentic) {
-        credentials.dashLocation = authentic.userId;  //??? bug???
-        credentials.cohortId = authentic.cohortId;
         if(authentic.authentic) {
+          credentials.dashLocation = authentic.userId;
+          credentials.cohortId = authentic.cohortId;
           login(credentials);          
-        }
+        };
       })
       .catch(function(err) {
         alert("You've provided improper login information. Please try again");
         console.error(err);
-      })
+      });
 
     $("#loginModal").hide();
 
@@ -162,7 +162,6 @@ function createUser(formData) {
  * @param  {Object} userObj contains the username, password, and dashLocation by id
  */
 function login(userObj) {
-    console.log("meow cohort",userObj.cohortId);
   localStorage.setItem("cohortID",userObj.cohortId)
   localStorage.setItem("userID", userObj.dashLocation);
   location.replace("/user" + userObj.dashLocation);
