@@ -144,6 +144,7 @@ $(function() {
         }
 
         // all put data ready, do the put to backend server
+        function showUserData(){
         $.ajax("/job/changeLoc"+id, {
             type: "PUT",
             data: dataObj
@@ -152,6 +153,8 @@ $(function() {
               console.log( "card updated");
               location.reload();
         });
+      }
+      showUserData();
         
     })
 

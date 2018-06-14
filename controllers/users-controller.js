@@ -13,6 +13,15 @@ router.post('/user/add', function(req, res) {
     password: req.body.password
   };
 
+  // We need to grab the cohort ID associated with the cohort name the user selected.
+  // This is due to users created having a CohortId property which would otherwise
+  // be null upon creating a new user. The other alternative to this would be
+  // to add a hidden associated cohort ID on the front end when they 
+  // initially select a cohort they belong to. The cohorts to select from on the
+  // front end is still populated with a query results already.
+  // With more time, I would go back and apply a data-attribute holding the needed ID
+  // This realization came after the fact
+
   // Query DB for the cohort by name (req.body.cohort_name)
   db.Cohort.findOne({ where: { cohort_name: req.body.cohort_name } })
     .then(function(data) {
@@ -33,19 +42,6 @@ router.post('/user/add', function(req, res) {
       console.error(err);
     });
 });
-
-router.post('/user/login', function(req, res) {
-  res.json({ id: 3 });
-  // return res.redirect('/user/'+id);
-  // res.render(path.join(__dirname,"../views/user.handlebars"));
-});
-// var url = window.location.search;
-// var authorId;
-// if (url.indexOf("?author_id=") !== -1) {
-//   authorId = url.split("=")[1];
-//   getPosts(authorId);
-// }
-
 
 router.get('/user:id', function(req, res) {
   var id = req.params.id;
@@ -80,13 +76,13 @@ router.get('/user/all',function(req, res) {
   });
 });
 
-router.post('/development',function(req,res) {
-
-  var username = req.body.username;
-  var password = req.body.password;
-  // Check where user
+router.post('/user/exists',function(req,res) {
+  var username = req.body.user_name;
+  // Attempt to grab matching users from DB.
+  // If none a found, an empty array gets sent back
+  // the length check happens on the front-end
   db.User.findAll({
-    where: { user_name: username, password: password }
+    where: { user_name: username }
   })
   .then(function(hits) {
     var hits = hits.map(function(hit) {return hit.dataValues});
@@ -98,6 +94,21 @@ router.post('/development',function(req,res) {
 
 });
 
+router.post('/user/authenticate',function(req,res) {
+  var username = req.body.user_name;
+  var password = req.body.password;
+  console.log(`Username: ${username}, Password:${password}`);
+  db.User.findAll({
+    where: { user_name: username, password: password }
+  })
+  .then(function(data) {
+    res.json(data);
+  })
+  .catch(function(err) {
+    console.error(err);
+  })
+
+})
 
 module.exports = router;
 
