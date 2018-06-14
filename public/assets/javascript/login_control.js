@@ -26,7 +26,8 @@ $(function() {
     // Authenticate if this user provided correct info and log them in
     authenticate(credentials)
       .then(function(authentic) {
-        credentials.dashLocation = authentic.cohortId;
+        credentials.dashLocation = authentic.userId;  //??? bug???
+        credentials.cohortId = authentic.cohortId;
         if(authentic.authentic) {
           login(credentials);          
         }
@@ -72,7 +73,8 @@ $(function() {
           var userInfo = {
             username: userData.user_name,
             password: userData.password,
-            dashLocation: userData.id
+            dashLocation: userData.id,
+            CohortId:userData.CohortId
           };
           // Log the user into their account by passing in the userInfo.
           login(userInfo);
@@ -168,6 +170,8 @@ function createUser(formData) {
  * @param  {Object} userObj contains the username, password, and dashLocation by id
  */
 function login(userObj) {
+    console.log("meow cohort",userObj.cohortId);
+  localStorage.setItem("cohortID",userObj.cohortId)
   localStorage.setItem("userID", userObj.dashLocation);
   location.replace("/user" + userObj.dashLocation);
 };
@@ -190,9 +194,11 @@ function authenticate(credentials) {
         throw new Error("Improper password!");
       } else {
         var cohortId = data[0].CohortId;
+        var userId = data[0].id;
         return {
           authentic: true,
-          cohortId: cohortId
+          cohortId: cohortId,
+          userId:userId
         }
       }
     })
