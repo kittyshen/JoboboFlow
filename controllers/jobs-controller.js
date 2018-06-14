@@ -27,21 +27,6 @@ router.get("/api/jobs", function(req,res) {
   });
 })
 
-
-router.get('/user/:id/jobs', function (req, res) {
-  var id = req.params.id;
-  // console.log(req.params.id + "kjljldjsf");
-  // console.log('jon world! user show all user jobs');
-  db.Job.findAll({
-    include: [db.User],
-    where: { UserId: id }
-  }).then(function (data) {
-    res.json(data);
-  });
-});
-
-
-
 router.get("/api/admin/cohort/:id?/users/:id?/job-search", function(req, res) {
   if (cohort_id && user_id) {
     db.Job.findAll({
