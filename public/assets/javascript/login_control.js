@@ -38,14 +38,6 @@ $(function() {
 
     $("#loginModal").hide();
 
-    // $.post("/user/login", userObj)
-    //   .then(function(data) {
-    //     // https://stackoverflow.com/questions/4744751/how-do-i-redirect-with-javascript
-    //     var userID = data.id;
-    //     localStorage.setItem("userID", userID);
-    //     location.replace("/user" + userID);
-    //     // location.reload();
-    //   })
   });
 
 
