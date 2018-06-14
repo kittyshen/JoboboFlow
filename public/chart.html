@@ -51,7 +51,7 @@
     <canvas id="myChart"></canvas>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-
+    <script src=“//cdn.jsdelivr.net/bluebird/3.5.0/bluebird.js”></script>
     <script>
 
       $(function () {
@@ -61,8 +61,13 @@
 
         function showUserData() {
 
-
           var userID = localStorage.getItem("userID");
+          var cohortID = localStorage.getItem("cohortID");
+          //comment this after we done with login and everything 
+          //save user id and cohort id into local storage then grab it out here
+          var cohortID = 2;
+          var userID = 3;
+
           console.log(userID);
 
           var url = "/user/" + userID + "/jobs";
@@ -70,29 +75,42 @@
 
           var p1 = $.get(url, function (data) {
             return data;
-          });
+          });   //contain only user job data
 
           var p2 = $.get("/api/jobs", function (data) {
             return data;
-          });
+          });  // contain all jobs belong to all database
+
+          var p3 = $.get("/api/cohort/"+cohortID+"/users/jobs",function(data){
+            return data;
+          })  // contain all jobs belong to certain cohort
 
           var p4 = $.get("/user/all", function (data) {
             return data;
-          });
-          return Promise.all([p1, p2, p4]);
+          }); // contain all users belong to all database
+
+          var p5 = $.get("/api/cohort/"+cohortID+"/users", function (data) {
+            return data;
+          });  // contain all users belong to certain cohort
+          
+          return Promise.all([p1, p2, p3, p4, p5]);
+
         }
 
         showUserData().then(function (data) {
-          var sumAppliedUser = 0;
+          var sumAppliedUser = data[0].length;
           var sumPhoneUser = 0;
           var sumSiteUser = 0;
-          var sumAppliedAll = 0;
+          var sumAppliedAll = data[1].length;
           var sumPhoneAll = 0;
           var sumSiteAll = 0;
-          var sumUser = data[2].length;
-
-          sumAppliedUser = data[0].length;
-          sumAppliedAll = data[1].length;
+          var sumAppliedCohort = data[2].length;
+          var sumPhoneCohort = 0;
+          var sumSiteCohort = 0;
+          //get the total number of users in cohort and overall users in database 
+          var totalUserNumberAll = data[3].length;
+          var totalUserNumberCohort = data[4].length;
+          
           // extract user data
           for (var i = 0; i < data[0].length; i++) {
 
@@ -104,7 +122,7 @@
             }
           }
 
-          // extract all data
+          // extract all user data
           for (var i = 0; i < data[1].length; i++) {
 
             if (data[1][i].phone_interview) {
@@ -115,10 +133,24 @@
             }
           }
 
+          // extract cohort data
+          for (var i = 0; i < data[2].length; i++) {
+
+            if (data[1][i].phone_interview) {
+              sumPhoneCohort++;
+            } 
+            if (data[1][i].site_interview) {
+              sumSiteCohort++;
+            }
+          }
+
           //now we average the all user data
-          var aveAppliedAll = sumAppliedAll / sumUser;
-          var avePhoneAll = sumPhoneAll / sumUser;
-          var aveSiteAll = sumSiteAll / sumUser;
+          var aveAppliedAll = sumAppliedAll / totalUserNumberAll ;
+          var avePhoneAll = sumPhoneAll / totalUserNumberAll ;
+          var aveSiteAll = sumSiteAll / totalUserNumberAll ;
+          var aveAppliedCohort = sumAppliedCohort / totalUserNumberCohort;
+          var avePhoneCohort = sumPhoneCohort / totalUserNumberCohort;
+          var aveSiteCohort = sumSiteCohort / totalUserNumberCohort;
 
           console.log("sumAppliedU", sumAppliedUser)
           console.log("sumphoneU", sumPhoneUser)
@@ -128,14 +160,14 @@
           console.log("sumsiteA", aveSiteAll)
           console.log("all data", data)
 
-          barChart(sumAppliedUser, sumPhoneUser, sumSiteUser, aveAppliedAll, avePhoneAll, aveSiteAll)
+          barChart(sumAppliedUser, sumPhoneUser, sumSiteUser, aveAppliedCohort, avePhoneCohort, aveSiteCohort, aveAppliedAll, avePhoneAll, aveSiteAll)
 
           console.log("user", data[0])
           console.log("all", data[1])
         })
       })
 
-      function barChart(sumAppliedU, sumphoneU, sumsiteU, aveAppliedA, avephoneA, avesiteA) {
+      function barChart(sumAppliedU, sumphoneU, sumsiteU, aveAppliedC, avephoneC, avesiteC, aveAppliedA, avephoneA, avesiteA) {
         var ctx = document.getElementById('myChart').getContext('2d');
         var chart = new Chart(ctx, {
           // The type of chart we want to create
@@ -143,7 +175,7 @@
 
           // The data for our dataset
           data: {
-            labels: ["Applied", "Phone", "On-site"],
+            labels: ["Applied", "Phone-interview", "On-site interview"],
             datasets: [
               {
                 label: "You",
@@ -155,10 +187,10 @@
                 label: "Cohort Average",
                 backgroundColor: '#D38A87',
                 borderColor: '#D38A87',
-                data: [3, 3, 1]
+                data: [aveAppliedC, avephoneC, avesiteC]
               },
               {
-                label: "All Students Average",
+                label: "All Site User Average",
                 backgroundColor: '#A7D48C',
                 borderColor: '#A7D48C',
                 data: [aveAppliedA, avephoneA, avesiteA]
