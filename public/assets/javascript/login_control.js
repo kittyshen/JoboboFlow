@@ -186,10 +186,10 @@ function authenticate(credentials) {
   // Query DB for this user and password
   return $.post('/user/authenticate',credentials)
     .then(function(data) {
-      var cohortId = data[0].CohortId;
       if (data.length === 0) {
         throw new Error("Improper password!");
       } else {
+        var cohortId = data[0].CohortId;
         return {
           authentic: true,
           cohortId: cohortId
