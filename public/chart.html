@@ -70,31 +70,32 @@
 
           console.log(userID);
 
+          
           var url = "/user/" + userID + "/jobs";
           console.log(url);
 
-          var p1 = $.get(url, function (data) {
+          var p0 = $.get(url, function (data) {
             return data;
-          });   //contain only user job data
+          });   //returns specific user's job's data as an array
 
-          var p2 = $.get("/api/jobs", function (data) {
+          var p1 = $.get("/api/jobs", function (data) {
             return data;
-          });  // contain all jobs belong to all database
+          });  // returns all jobs in the database as an array
 
-          var p3 = $.get("/api/cohort/"+cohortID+"/users/jobs",function(data){
+          var p2 = $.get("/api/cohort/" + cohortID + "/users/jobs", function (data) {
             return data;
-          })  // contain all jobs belong to certain cohort
+          })  // returns all jobs in a specefic cohort as an array
 
-          var p4 = $.get("/user/all", function (data) {
+          var p3 = $.get("/user/all", function (data) {
             return data;
-          }); // contain all users belong to all database
+          }); // returns all users in the database as an array
 
-          var p5 = $.get("/api/cohort/"+cohortID+"/users", function (data) {
+          var p4 = $.get("/api/cohort/" + cohortID + "/users", function (data) {
             return data;
-          });  // contain all users belong to certain cohort
+          });  // returns all users in a specific cohort as an array
+
+          return Promise.all([p0, p1, p2, p3, p4]);
           
-          return Promise.all([p1, p2, p3, p4, p5]);
-
         }
 
         showUserData().then(function (data) {

@@ -19,8 +19,7 @@
         <!-- At large+ or medium screens takes up 2/3 width (8/12) small take full screen 12/12 -->
         <div class="col-lg-12 col-md-12 col-sm-12">
             <div id = "landingjumbotron" class="jumbotron jumbotron-fluid">
-                <h2 class=""> Our website help users doing job search management and compare their performance to their cohort.</h2>
-                <hr>
+                <h2 class="">Our website supports users throughout the job hunting process by providing task management and data visualization tools.</h2>
                 <h4 class="text-center"> Sign up today to start job searching.</h4>
                 <p class="text-center"><button id="signup" class="btn btn-outline-success" data-target="#signUpModal" type="submit">Sign Up</button></p>
 
@@ -98,12 +97,16 @@
 						<form id="loginForm">
 							<div class="form-group">
 								<div class="form-group">
-								</div>
 								<label class ="label-control">User Name </label>
 								<input placeholder="User Name" type="text" class="form-control" id="login_user_name">
+								</div>
 								<br/>
 								<label class ="label-control">Password </label>
-								<input placeholder="Password" type="password" class="form-control" id="login_password">
+								<input placeholder="Password" type="password" class="js-password form-control" id="login_password">
+							</div>
+							<div class="option">
+							<input class="option-input js-password-toggle" id="toggle" type="checkbox">
+<label class="option-label js-password-label" for="toggle">Show</label>
 							</div>
 						</form>
 
@@ -143,7 +146,7 @@
       <img class="card-img-top" src="assets/images/icon-2.png" alt="Card image cap">
       <div class="card-body">
         <h5 class="card-title text-center">Data Comparison</h5>
-        <p class="card-text">Gain insights about your process versus users. Asses where you can improve according to the data of other users in the job hunting process.</p>
+        <p class="card-text">Gain insights on your job hunting process. Use the data to assess where you can improve according to the data of other users.</p>
       </div>
       <div class="card-footer">
         <small class="text-muted">Last updated 3 mins ago</small>
@@ -152,8 +155,8 @@
     <div class="card">
       <img class="card-img-top" src="assets/images/icon-1.png" alt="Card image cap">
       <div class="card-body">
-        <h5 class="card-title text-center">Result</h5>
-        <p class="card-text">Know where you stand with each application. Compare your results to all user results and averages. Realize opportunities where you can improve.</p>
+        <h5 class="card-title text-center">Results</h5>
+        <p class="card-text">Know where you stand with each application. Compare your results to all user results and averages. Realize opportunities and improve outcomes.</p>
       </div>
       <div class="card-footer">
         <small class="text-muted">Last updated 3 mins ago</small>
@@ -161,92 +164,30 @@
     </div>
   </div>
 <script src="assets/javascript/login_control.js"></script>
-{{!-- handlebar pass variable quick reference --}}
-{{!-- 
-<div class = "row">
+        <script src="./assets/javascript/password-toggle.js"></script>
 
-	<div class = "col-md-4 col-sm-4">
-		<ul>
-			{{#each cats}}
-				{{#unless rescued}}
-					<div class ="alert alert-info ">
-						<li>
-							<p> {{id}} : {{cat_name}}</p>
-							<p> Put up for adoption at:<br>{{createdAt}}</p>
-							
-							<img src="assets/img/meow.png" width =80px alt="catbaby">
-							<form id ="adoptCat"  method="POST">
-							<input type="text" name="ownername" placeholder="Enter your name to adopt">
-
-							<button type="submit" class = "btn btn-primary adpBtn" data-id={{id}}>Adpot Meow</button>
-							</form>
-						</li>
-					</div>
-				{{/unless}}
-			{{/each}}
-		</ul>
-	</div>
-
-</div> --}}
-{{!-- <script type = "text/javascript">
+<script type = "text/javascript">
 $(function() {
-	$("#signup").on("click",function(){
-		$("#signupModal").show();
-	});
-	$("#signupClose").on("click",function(){
-		$("#signupModal").hide();
-	});
-	$("#login").on("click",function(){
-		$("#loginModal").show();
-	});
-	$("#loginClose").on("click",function(){
-		$("#loginModal").hide();
-	});
+	
+var passwordToggle = document.querySelector('.js-password-toggle')
 
+passwordToggle.addEventListener('change', function() {
+//   var password = document.querySelector('.js-password')
+  var password = $('.js-password');
+   var passwordLabel = $('.js-password-label');
 
-	//click on the addCat button event
-	$("#addCat").on("submit",function(event){
-		event.preventDefault();
-		var catName = $("[name=catname]").val().trim();
-		var newCatObj = {
-			name:catName,
-			rescued:0
-		}
-		console.log(newCatObj);
-		$.post("/addcat",newCatObj)
-		.then(function(){
-			location.reload();
-		});
-	});
+  if ($('.js-password').type == 'password') {
+    $('.js-password').type = 'text'
+    passwordLabel.innerHTML = 'Hide'
+  } else {
+    $('.js-password').type = 'password'
+    passwordLabel.innerHTML = 'Show'
+  }
+  
+  password.focus()
+});
 
-	//click on the adoptcat button
-	$(".adpBtn").on("click",function(event){
-		event.preventDefault();	
-		var catid = $(this).data("id");  //grab the cat id from data attr assigned when render cat
-		var newCatObj = {
-			rescued:1,
-		}
-		console.log(newCatObj);
-		//save owner info before update cat
-		name = $("[name=ownername]").val().trim();
-		$.post("/owner", { name: name }).then(function (backdata) {
-			console.log("what iss backdata:  ",backdata);  //backdata is the previous post owner obj, we need the id
-			var newCatObj = {
-			rescued:1,
-			OwnerId:backdata.id  //assign cat's foreignkey with the owner id
-			}	//then update the cat
-			$.ajax("/adpotcat/" + catid, {
-				type: "PUT",
-				data: newCatObj
-			})
-			.then(function () {
-				console.log("changed adopted to", true);
-				location.reload();
-			});
-		});
-
-	});
 
 })
-</script> --}}
+</script>
 

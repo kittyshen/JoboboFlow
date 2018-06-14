@@ -11,6 +11,7 @@ html,body{
     font-family: 'Sunflower', sans-serif; 
     /* color: rgb(130, 233, 163); */
 }
+
 #chartPage{
     background-image: none;
 }
@@ -71,6 +72,7 @@ html,body{
 }
 
 #landingjumbotron{
+    background-image:url("../images/chartblur.png");
     margin-top: 3em ;
     color:rgb(94, 94, 94);
     background-color: rgba(245, 245, 245, 1);

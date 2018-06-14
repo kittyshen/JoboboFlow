@@ -51,7 +51,7 @@ router.get('/user:id', function(req, res) {
     include: [db.User],
     where: { UserId: id }
   }).then(function(data) {
-    res.render(path.join(__dirname, "../views/user.handlebars"), { jobs: data });
+    res.render("user", { jobs: data });
     // console.log("../views/user.handlebars");
     // res.render(path.join(__dirname,"../views/user.handlebars"),{jobs:data})
   });

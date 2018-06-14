@@ -62,7 +62,7 @@ $(function() {
         }
         console.log(jobObj);
         $("#addjobModal").hide();
-        $.ajax("/job/delete/"+id, {
+        $.ajax("/job/hide/"+id, {
             type: "PUT",
             data: jobObj
           })

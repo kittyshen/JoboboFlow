@@ -18,7 +18,7 @@ router.get('/', function (req, res) {
       }
       // console.log(hbsObject);
       // Need to pass the handlebars info to 'each' the cohorts option menu
-      res.render(path.join(__dirname, "../views/index.handlebars"), hbsObject);
+      res.render( "index", hbsObject);
     })
     // Error handling
     .catch(function (err) {

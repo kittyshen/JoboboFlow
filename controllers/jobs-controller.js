@@ -78,7 +78,7 @@ router.put("/job/changeLoc:id", function(req, res) {
     )
 })
 
-router.put("/job/delete/:id",function(req,res){
+router.put("/job/hide/:id",function(req,res){
   var id = req.params.id;
   console.log(id);
   var data = req.body;
