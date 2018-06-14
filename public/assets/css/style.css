@@ -118,14 +118,17 @@ li >p {
     font-size: 1em;
     margin:0.3em 0.6em;
     background-color: #426875;
+    border: #426875;
     margin-bottom:0em;
 }
 .card-del{
-    position:absolute;
-    /* clear: both; */
-    margin-right: 0;
-    padding-right:0;
-    padding-top:0 !important;
+    float: right !important;
+    width:1.2em;
+    margin-top:-1em;
+    margin-right: -1.2em;
+    padding:0 !important;
+    color:white;
+    background-color: rgba(240, 248, 255, 0);
 }
 
 .showCase .hidden {

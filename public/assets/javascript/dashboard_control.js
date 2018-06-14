@@ -174,10 +174,10 @@ $(function() {
         $.ajax("/job/changeLoc"+id, {
             type: "PUT",
             data: dataObj
-          })
+        })
         .then(function () {
-              console.log( "card updated");
-              location.reload();
+            console.log( "card updated");
+            location.reload();
         });
         
     })
