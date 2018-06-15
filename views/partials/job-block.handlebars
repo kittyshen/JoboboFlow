@@ -1,5 +1,4 @@
 <div class="alert alert-info ">
-    <span class="btn card-del" id="delete{{id}}" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x</span>
 
     <li>
         <p> Title: {{job_title}}</p>
@@ -7,10 +6,8 @@
         <p> Link:
             <a href="{{job_link}}">click here</a>
         </p>
-        <form id="control" method="PUT">
-            <button type="submit" class="btn btn-primary backbtn" id="back{{id}}"  data-id={{id}}>back</button>
-            <button type="submit" class="btn btn-primary nextbtn" id="next{{id}}"  data-id={{id}}>next</button>
-        </form>
+    <button class="badge card-restore"  data-id={{id}} id="restore{{id}}" >restore</button>
+
     </li>
 </div>
 

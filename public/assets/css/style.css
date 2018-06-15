@@ -133,6 +133,11 @@ li >p {
     background-color: rgba(240, 248, 255, 0);
 }
 
+.card-img-overlay{
+    padding:1.5em;
+}
+
+
 .showCase .hidden {
     opacity:0;
 

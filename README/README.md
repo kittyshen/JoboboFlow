@@ -66,6 +66,6 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* Cats
+* Cats Meowing kittykuma.com
 * Unobtainiumrock Industries ®
 
