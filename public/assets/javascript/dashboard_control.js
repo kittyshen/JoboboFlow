@@ -22,7 +22,14 @@ $(function() {
 	$(document).on("click","#addjobClose",function(){
         $("#addjobModal").hide();
     });
+	$(document).on("click","#trash",function(){
+		$("#trashModal").show();
+	});
+	$(document).on("click","#trashModalClose",function(){
+        $("#trashModal").hide();
+    });
 
+    
     //add job button on the form clicked process user input
     $('#addjob_btn').on("click",function(event){
         event.preventDefault();
@@ -44,6 +51,28 @@ $(function() {
 
         $.post("/job/add",jobObj).then(function(data){
             // https://stackoverflow.com/questions/4744751/how-do-i-redirect-with-javascript
+            console.log(data);
+            // location.replace("/user"+data.id);
+            location.reload();
+        });
+    })
+    
+
+    $(document).on("click",".card-restore", function(event){
+        event.preventDefault();
+        var id = $(this).data("id");
+        console.log(id);
+
+        var jobObj = {
+            hide:0
+        }
+        console.log(jobObj);
+        $("#addjobModal").hide();
+        $.ajax("/job/hide/"+id, {
+            type: "PUT",
+            data: jobObj
+          })
+        .then(function(data){
             console.log(data);
             // location.replace("/user"+data.id);
             location.reload();

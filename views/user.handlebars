@@ -12,7 +12,7 @@
   <a class="navbar-brand" href="/">
     <img src="assets/images/Project2logoversion2.png" alt="logo">
   </a>
-  <button id="login" class="btn btn-outline-success " data-target="#loginModal" type="submit">Job search</button>
+  {{!-- <button id="login" class="btn btn-outline-success " data-target="#loginModal" type="submit">Job search</button> --}}
   <a href="/chart" id="data-visual" class="btn btn-outline-success "> Data Visualization</a>
 </nav>
 
@@ -119,8 +119,11 @@
           </div>
           <div class="card">
             <img class="card-img-top" src="assets/images/outcome-icon.png" alt="Card image cap">
+            <span class="btn" id="trash">
+              <img id= "trashcan" class="card-img-overlay" height="80px" src="assets/images/trashcan.png" alt="Add new job">
+            </span>
             <div class="card-body">
-              <h5 class="card-title text-center">Outcomes</h5>
+              <h5 class="card-title text-center">Offers</h5>
 				<div class="col-md-12 col-sm-12">
 					<ul>
 					{{#each jobs}} {{#unless hide}}{{#if loc4}}
@@ -187,6 +190,33 @@
 
       </row>
 
+      {{!-- trashcan feature --}}
+      <row>
+        <div class="modal" tabindex="-1" id="trashModal" role="dialog">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Trash Can</h5>
+                <button type="button" id="trashModalClose" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+
+              <div class="modal-body">
+              {{!-- old deleted job card here                 --}}
+              {{#each jobs}} {{#if hide}}
+               {{>job-block}}
+              {{/if}}{{/each}}
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </row>
+    
+      
+
     </div>
 
   </div>
@@ -200,76 +230,4 @@
     <p id="copyright">copy right joboboflow.com ©</p>
 </footer> -->
 
-<script src="assets/javascript/dashboard_control.js"></script> {{!-- handlebar pass variable quick reference --}} {{!--
-<div class="row">
-
-  <div class="col-md-4 col-sm-4">
-    <ul>
-      {{#each cats}} {{#unless rescued}}
-      <div class="alert alert-info ">
-        <li>
-          <p> {{id}} : {{cat_name}}</p>
-          <p> Put up for adoption at:
-            <br>{{createdAt}}</p>
-
-          <img src="assets/img/meow.png" width=80px alt="catbaby">
-          <form id="adoptCat" method="POST">
-            <input type="text" name="ownername" placeholder="Enter your name to adopt">
-
-            <button type="submit" class="btn btn-primary adpBtn" data-id={{id}}>Adpot Meow</button>
-          </form>
-        </li>
-      </div>
-      {{/unless}} {{/each}}
-    </ul>
-  </div>
-
-</div> --}} {{!--
-<script type="text/javascript">
-
-
-    //click on the addCat button event
-    $("#addCat").on("submit", function (event) {
-      event.preventDefault();
-      var catName = $("[name=catname]").val().trim();
-      var newCatObj = {
-        name: catName,
-        rescued: 0
-      }
-      console.log(newCatObj);
-      $.post("/addcat", newCatObj)
-        .then(function () {
-          location.reload();
-        });
-    });
-
-    //click on the adoptcat button
-    $(".adpBtn").on("click", function (event) {
-      event.preventDefault();
-      var catid = $(this).data("id");  //grab the cat id from data attr assigned when render cat
-      var newCatObj = {
-        rescued: 1,
-      }
-      console.log(newCatObj);
-      //save owner info before update cat
-      name = $("[name=ownername]").val().trim();
-      $.post("/owner", { name: name }).then(function (backdata) {
-        console.log("what iss backdata:  ", backdata);  //backdata is the previous post owner obj, we need the id
-        var newCatObj = {
-          rescued: 1,
-          OwnerId: backdata.id  //assign cat's foreignkey with the owner id
-        }	//then update the cat
-        $.ajax("/adpotcat/" + catid, {
-          type: "PUT",
-          data: newCatObj
-        })
-          .then(function () {
-            console.log("changed adopted to", true);
-            location.reload();
-          });
-      });
-
-    });
-
-  })
-</script> --}}
+<script src="assets/javascript/dashboard_control.js"></script> 
