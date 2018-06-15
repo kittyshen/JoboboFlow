@@ -44,7 +44,58 @@ Here's our models
 
 ### Routes
 Here's our routes -minus the body content.
-<img src="./routes.png">
+
+
+```
+router.get('/cohort',function(req,res) {
+});
+
+router.get("/api/cohort/:id/users",function(req,res) {
+});
+
+router.get('/admin',function(req,res) {
+});
+
+router.get('/', function (req, res) {
+});
+
+router.get('/chart', function (req, res) {
+});
+
+router.get("/api/admin/cohort/:id?/job-table",function(req,res) {
+});
+
+router.get("/api/jobs", function (req. res) {
+});
+
+router.get("/api/admin/cohort/:id?/users/:id?/job-search",function(req,res) {
+});
+
+router.post('/job/add', function (req, res) {
+});
+
+router.put("/job/changeLoc:id", function(req, res) {
+});
+
+router.put("/job/delete/:id",function(req,res){
+});
+
+router.post('/user/add', function(req, res) {
+});
+
+router.get('/user:id', function(req, res) {
+});
+
+router.get('/user/:id/jobs', function(req, res) {
+});
+
+router.post('/user/exists',function(req,res) {
+});
+
+router.post('/user/authenticate',function(req,res) {
+});
+```
+
 
 ## Stretch Goals
 * Add a trash can that collects denied applications.
