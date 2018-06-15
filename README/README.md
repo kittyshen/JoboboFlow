@@ -1,7 +1,7 @@
 # JoboboFlow
 JoboboFlow aids users in their job hunting process by providing tracking and data visualization tools. 
 
-<img src="./landing-page.png">
+<img src="./landing-page.PNG">
 
 ## Features
 Some of the features that make JoboboFlow really awesome include:
