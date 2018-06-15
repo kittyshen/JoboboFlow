@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "",
+    "password": "password",
     "database": "joboboflow_db",
     "host": "127.0.0.1",
     "dialect": "mysql"
@@ -14,10 +14,10 @@
     "dialect": "mysql"
   },
   "production": {
-    "username": "r0rshe93hvkmuba1",
-    "password": "h3sb1p6ehr2h00iz",
-    "database": "kqp8rt98mun9bkhb",
-    "host": "g3v9lgqa8h5nq05o.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+    "username": "root",
+    "password": "",
+    "database": "database_test",
+    "host": "127.0.0.1",
     "dialect": "mysql"
   }
 }
