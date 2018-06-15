@@ -1,16 +1,16 @@
 # JoboboFlow
 JoboboFlow aids users in their job hunting process by providing tracking & data visualization tools. 
 
-<img src="./landing-page.PNG">
+<img src="./README/landing-page.PNG">
 
 ## Features
 Some of the features that make JoboboFlow really awesome include:
 
 * Task tracking
-<img src="./task-board.png">
+<img src="./README/task-board.png">
 
 * Data visualization
-<img src="./visual-analysis.png">
+<img src="./README/visual-analysis.png">
 
 
 ## Why use JoboboFlow?
@@ -38,15 +38,19 @@ JoboboFlow collects data on the jobs its users apply to and saves the data into 
 #### Middleware
 * [body-parser](https://github.com/expressjs/body-parser)
 
+#### CDN's
+* [Bluebird](http://bluebirdjs.com/docs/getting-started.html)
+* [JQuery](https://api.jquery.com/)
+
 ### Relations
 Here's our models
-<img src="./schema-tables.png">
+<img src="./README/schema-tables.png">
 
 ### Routes
 Here's our routes -minus the body content.
 
 
-```
+```javascript
 router.get('/cohort',function(req,res) {
 });
 
