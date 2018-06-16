@@ -1,18 +1,19 @@
 
-var passwordToggle = document.querySelector('.js-password-toggle')
+var passwordToggle = $('.js-password-toggle')
 
-passwordToggle.addEventListener('change', function() {
-//   var password = document.querySelector('.js-password')
+passwordToggle.on('click', function() {
+
+  // console.log("here")
   var password = $('.js-password');
    var passwordLabel = $('.js-password-label');
-
-  if (password.type === 'password') {
-    password.type = 'text'
-    passwordLabel.innerHTML = 'Hide'
+   password.css("color","grey");
+  if (password.attr("type") === 'password') {
+    password.attr("type","text");
+    passwordLabel.html('Hide');
   } else {
-    password.type = 'password'
-    passwordLabel.innerHTML = 'Show'
+    password.attr("type","password");
+    passwordLabel.html('Show');
   }
   
-  password.focus()
+  // password.focus()
 });
